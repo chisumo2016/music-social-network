@@ -5,46 +5,65 @@
         <div class="bg-black p-8 shadow rounded mb-6 ">
           <h1 class="mb-6 text-lg text-gray-100 font-thin">Let's get rocking</h1>
           <div class="mb-4">
-            <label
-                class="
-              block
-              uppercase
-              tracking-wide
-              text-xs
-              font-bold
-              mb-2
-              text-gray-100">First Name</label>
-            <input type="text"
-                   class="
-                 appearance-none
-                 block
-                 w-full
-                 bg-white
-                 text-gray-700
-                 border
-                 border-gray-400
-                 rounded
-                 py-3
-                 px-4
-                 leading-tight
-                 focus:outline-none
-                 focus:bg-white
-                 focus:border-gray-500
-            ">
+            <TextInput
+                label="First Name"
+                :labelColor="false"
+                placeholder="John"
+                v-model:input="firstName"
+                inputType="text"
+                error="This is a test error"
+            />
           </div>
-          <span class="text-red-500">
-            This is an error message
-        </span>
+          <div class="mb-4">
+            <TextInput
+                label="Last Name"
+                :labelColor="false"
+                placeholder="Doe"
+                v-model:input="lastName"
+                inputType="text"
+                error="This is a text error"
+            />
+          </div>
+          <div class="mb-4">
+            <TextInput
+                label="Email"
+                :labelColor="false"
+                placeholder="doe@gmail.com"
+                v-model:input="email"
+                inputType="text"
+                error="This is a test error"
+            />
+          </div>
+          <div class="mb-4">
+            <TextInput
+                label="Password"
+                :labelColor="false"
+                placeholder="Password123"
+                v-model:input="password"
+                inputType="password"
+                error="This is a test error"
+            />
+          </div>
+          <div class="mb-4">
+            <TextInput
+                label="Confirm Password"
+                :labelColor="false"
+                placeholder="Password123"
+                v-model:input="confirmPassword"
+                inputType="password"
+            />
+          </div>
+
           <button
               class="
-            block
-            w-full
-            bg-green-500
-            text-white
-             rounded-sm
-             py-3
-             text-sm
-             tracking-wide"
+                block
+                w-full
+                bg-green-500
+                text-white
+                rounded-sm
+                py-3
+                text-sm
+                tracking-wide"
               type="submit">
             Register
           </button>
@@ -61,7 +80,14 @@
 </template>
 
 <script setup>
+import TextInput from "@/components/global/TextInput.vue";
+import {ref} from "vue";
 
+const firstName = ref(null)
+const lastName = ref(null)
+const email = ref(null)
+const password = ref(null)
+const confirmPassword = ref(null)
 </script>
 
 <style scoped>

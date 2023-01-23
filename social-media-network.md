@@ -40,8 +40,26 @@
                 <style lang="css"></style>
 
 ## Tailwind CSS Register & Login with Vue 3
-    - Build the register and login view 
+    - Build the register and login view ass Auth folder
     - Add the router in Router file
+    - Design the input with tailwindcsss
+    - LoginView.vue
+    - RegisterView.vue
+
+## VUE3 REUSABLE INPUT COMPONENT
+    - Make the reusable component for input field
+    - Create a global folder
+            src/components/global/TextInput.vue
+    - Copy everything from LoginView.vue
+    - In the TextInput.vue , we need to import few things
+            defineProps
+            defineEmits,
+            toRefs
+    - Changes
+            type="text" =>  type="inputType"
+            v-model="inputComputed"
+            text-gray-100">First Name</label>
+            text-gray-100">{{ label }}</label>
     
 
 
