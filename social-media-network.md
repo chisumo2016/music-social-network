@@ -38,6 +38,10 @@
             src/components/partials/HeroSection.vue
                 <script setup></script
                 <style lang="css"></style>
+
+## Tailwind CSS Register & Login with Vue 3
+    - Build the register and login view 
+    - Add the router in Router file
     
 
 
