@@ -30,8 +30,14 @@
     - Delete the HelloWorld Component
     - Delete the About Component
     - Go to Router Index.js remove the about 
-    - Remove the link menu on App.vuee
+    - Remove the link menu on App.vue
 
+### Tailwind CSS Hero Section with Vue 3
+    - Go work on the HomePage 
+    - Create a folder called partials insidee the components 
+            src/components/partials/HeroSection.vue
+                <script setup></script
+                <style lang="css"></style>
     
 
 
