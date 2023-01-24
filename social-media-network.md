@@ -60,7 +60,15 @@
             v-model="inputComputed"
             text-gray-100">First Name</label>
             text-gray-100">{{ label }}</label>
-    
 
+### Vue Router child routes (PROFILE SECTION)
+    - Create a Account Folder -> ProfileSection.vue file
+    - Make a path with children in the router.js
+            No / on child route
+    -Create an AccountView.vue file (src/views/AccountView.vue)
+    - To create a component for our ProfileSection.vue file
+            src/components/partials/profile/ProfileAboutSection.vue
+            src/components/partials/profile/ProfileInfoSection.vue
+    - Imprt all above component in the ProfileSection.vue file
 
 

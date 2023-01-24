@@ -39,9 +39,7 @@
 <script setup>
 import {defineProps, defineEmits, toRefs, computed} from 'vue';
 
-
 const emit = defineEmits(['update:input']);
-
 const props = defineProps({
   label : String,
   labelColor: {
