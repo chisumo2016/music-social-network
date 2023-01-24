@@ -96,7 +96,12 @@
     -Copy the url from youtube annd paste on YoutuubeVideoSection.vue file
             <iframe class="w-full h-60" src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" ></iframe>
 
-### 
+### Tailwind CSS Cards in Vue 3
+    - Gonna create a Post Section
+    - Take the YoutubeVideosSection.vue and paste name PostsSection.vue
+    - Flowbite 
+            https://flowbite.com/docs/components/card/#default-card
+    - Import into ProfileSection.vue file
 
 
 
