@@ -31,6 +31,7 @@
   </div>
 </div>
   <SongSections/>
+  <YoutubeVideosSection/>
 </template>
 <script setup>
 
@@ -38,6 +39,7 @@ import ProfileInfoSection from "@/components/partials/profile/ProfileInfoSection
 import ProfileAboutSection from "@/components/partials/profile/ProfileAboutSection";
 import RouterLinkButton from "@/components/global/RouterLinkButton";
 import SongSections from "@/components/partials/profile/SongSections";
+import YoutubeVideosSection from "@/components/partials/profile/YoutubeVideosSection";
 </script>
 
 <style scoped>

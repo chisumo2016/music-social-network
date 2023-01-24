@@ -87,4 +87,24 @@
     - Add the another component called SongPlayer.vue, copy SongSection anad Paste
     - Download mmusic from pixabay.com
     - CCreate a folder called music inside public
+    - Import SongPlayer into  songSections.vue file
+
+### Video section with Vue 3 and Tailwind CSS
+    - Create a Video Section
+    - Take the SongsSection.vue and paste - call YoutubeVideosSection.vue file
+    - Import into ProfileSection.vue file
+    -Copy the url from youtube annd paste on YoutuubeVideoSection.vue file
+            <iframe class="w-full h-60" src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" ></iframe>
+
+### 
+
+
+
+
+
+
+
+
+
+
     
