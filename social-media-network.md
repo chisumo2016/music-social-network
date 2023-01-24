@@ -73,4 +73,18 @@
 
 ### Vue 3 Router Link component
     - Gonna make the edit buutton as commponent , gonna use alot
-    - Will be global button component
+    - Will be global button component called RouterLinkButton.vue
+    - Import on profileSection.vue file
+
+## Install APlayer with Vue 3 and Tailwind CSS (Song Section)
+    - Gonna implemennt the song section
+    - Copy the ProfileAboutSSection and paste - call SongSection
+    - Design with Tailwindcss
+    - Import on ProfileSection.vue file
+    - Add the play plugin
+            https://aplayer.js.org/#/home
+            npm install aplayer --save
+    - Add the another component called SongPlayer.vue, copy SongSection anad Paste
+    - Download mmusic from pixabay.com
+    - CCreate a folder called music inside public
+    
