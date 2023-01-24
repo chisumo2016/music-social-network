@@ -69,6 +69,8 @@
     - To create a component for our ProfileSection.vue file
             src/components/partials/profile/ProfileAboutSection.vue
             src/components/partials/profile/ProfileInfoSection.vue
-    - Imprt all above component in the ProfileSection.vue file
+    - Import all above component in the ProfileSection.vue file
 
-
+### Vue 3 Router Link component
+    - Gonna make the edit buutton as commponent , gonna use alot
+    - Will be global button component
