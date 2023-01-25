@@ -24,4 +24,19 @@
             remove the :to=""
             change roueter-link into button
     - Import into EditProfile.vue file the SubmitFormButton commponent
+
+### Tailwind CSS Modal Cropper with Vue 3
+    - Create a Cropper Modal
+    - Copy the DisplayCropperButton.vue save as CropperModal.vue
+    - Create a Modal with Tailwindcss , design
+    - Modal Footer Button with Tailwindcss
+    -Install Cropper and Setup
+            https://www.npmjs.com/package/vue-advanced-cropper
+    - Write the logic to upload the file 
+            src="https://images.pexels.com/photos/226746/pexels-photo-226746.jpeg" TO
+            :src=""
+    - Let make the crop function , that emits the cropss data out of the component
+    - Add the model in EditProfile.vue
+    - Create CroppedImage vue component, copying TextInput.vue
+        
     
