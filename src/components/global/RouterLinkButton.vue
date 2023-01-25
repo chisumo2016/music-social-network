@@ -23,7 +23,11 @@
 <script setup>
 import {defineProps, toRefs} from 'vue';
 
-const props = defineProps({btnText : String ,url:String, color:String})
+const props = defineProps({
+  btnText : String ,
+  url:{type: String, default:'' },
+  color:String
+})
 const {btnText ,url ,color} = toRefs(props);
 
 </script>

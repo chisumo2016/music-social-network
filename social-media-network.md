@@ -96,13 +96,20 @@
     -Copy the url from youtube annd paste on YoutuubeVideoSection.vue file
             <iframe class="w-full h-60" src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" ></iframe>
 
-### Tailwind CSS Cards in Vue 3
+### Tailwind CSS Cards in Vue 3 (POST SECTION)
     - Gonna create a Post Section
     - Take the YoutubeVideosSection.vue and paste name PostsSection.vue
     - Flowbite 
             https://flowbite.com/docs/components/card/#default-card
     - Import into ProfileSection.vue file
 
+### Nav Bar & Menu with Tailwind CSS and Vue 3
+    - Top nnavigation bar
+    - Create a folder called structure in components call TopNavigation.vue
+    - Import on HomeView.vue
+    - Continue designing the TopNavigation
+    - Create again the FullScreennModal inside structure folder called FullScreenModal.vue
+    - Import on TopNavigation.vuue
 
 
 
