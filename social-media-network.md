@@ -109,7 +109,12 @@
     - Import on HomeView.vue
     - Continue designing the TopNavigation
     - Create again the FullScreennModal inside structure folder called FullScreenModal.vue
-    - Import on TopNavigation.vuue
+    - Import on TopNavigation.vuu
+    - Continue deesign with tailwindcss
+
+###  Tailwind CSS Footer with Vue 3
+    - Create a footer nav
+    - Create a FooterSection.vue file  and import into AccountView.vue
 
 
 
