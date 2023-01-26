@@ -61,11 +61,17 @@
     - Steel some input from AddSong.vue
     -Import the SubmitFormButton and add on video
     - Implement the UI for Delete Songs
-        add routeto deelete songs in router/index.js
-    - Copy the DeleteSongand call DeleteVideo.vue
+        add route delete songs in router/index.js
+    - Copy the DeleteSong and  call DeleteYouVideo.vue
     - Build the UI 
             
-
+### Tailwind CSS Forms with Vue 3  (Create & Edit Posts)
+    - Objectives is to CREATE & Edit the Post 
+    - Add route create Post and Delete Post in router/index.js
+    - Duplicated tthe EditProfile.vue call EditPost.vue
+    - Duplicated tthe EditPost.vue call CreatePost.vue
+    - Change field name in the CreatePost
+    - Copy the CreatePost code and Paste into EditPost.vue
 
     
         
