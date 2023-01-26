@@ -51,6 +51,19 @@
     - Implement the UI for Deelete Songs
         add routeto deelete songs in router/index.js
     - Copy the AddSong and call DeleteSong.vue
+    - Build the UI 
+
+### Tailwind CSS Forms with Vue 3 (Add & Delete Videos )
+    - Add New &  Delete  Videos as  objectives to this page
+    - Create  new file in account folder - AddVideo.vue
+    - Add the routes in Router/index.js
+    -Go to  editProfile.vue , copy from it 
+    - Steel some input from AddSong.vue
+    -Import the SubmitFormButton and add on video
+    - Implement the UI for Delete Songs
+        add routeto deelete songs in router/index.js
+    - Copy the DeleteSongand call DeleteVideo.vue
+    - Build the UI 
             
 
 

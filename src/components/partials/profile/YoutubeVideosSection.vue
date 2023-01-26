@@ -8,7 +8,7 @@
         <div class="w-full mt-4">
           <RouterLinkButton
               class="ml-3"
-              btnText="Youtube Video"
+              btnText="Delete Youtube Video"
               color="red"
               url="/account/delete-youtube-video"
           />
