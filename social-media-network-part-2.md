@@ -37,6 +37,23 @@
             :src=""
     - Let make the crop function , that emits the cropss data out of the component
     - Add the model in EditProfile.vue
-    - Create CroppedImage vue component, copying TextInput.vue
+    - Create CroppedImage vue component, copying from TextInput.vue
+    - import to the EditProfile Vue file.
+
+### Tailwind CSS Forms with Vue 3 (ADD AND DELETE SONGS)
+    - Add New Songs Delete  Songs  objectives
+    - Create  new file in account folder - AddSongs.vue
+    - Add the routes in Router/index.js
+    -Go to  editProfile.vue , copy from it 
+    - Steel some input from editProofile
+    - Steel some label from CropperModal
+    -Import the SubmitFormButton and add on song
+    - Implement the UI for Deelete Songs
+        add routeto deelete songs in router/index.js
+    - Copy the AddSong and call DeleteSong.vue
+            
+
+
+    
         
     
