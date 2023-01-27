@@ -51,13 +51,15 @@
 </template>
 
 <script setup>
-import TextInput from "@/components/global/TextInput.vue";
+import TextInput from "@/components/global/TextInput.vue";//../
 import {ref} from "vue";
 import axios from  "axios"
+import {useUserStore} from "@/Store/user-store"; //../
 
 const email   = ref(null)
 const password = ref(null)
 const errors = ref([])
+const userStore = useUserStore()
 
 const login = async  () => {
     errors.value = []
@@ -68,6 +70,9 @@ const login = async  () => {
           password: password.value
       })
       console.log(res)
+
+    userStore.setUserDetails(res)
+
   }catch (e) {
     errors.value = e.response.data.errors
   }
