@@ -11,7 +11,7 @@
                 placeholder="doe@gmail.com"
                 v-model:input="email"
                 inputType="text"
-                error="This is a test error"
+                :error="errors.email ? errors.email[0] : ''"
             />
           </div>
           <div class="mb-4">
@@ -21,7 +21,7 @@
                 placeholder="Password123"
                 v-model:input="password"
                 inputType="password"
-                error="This is a test error"
+                :error="errors.password ? errors.password[0] : ''"
             />
           </div>
           <button
@@ -34,8 +34,9 @@
              py-3
              text-sm
              tracking-wide"
+              @click="login"
               type="submit">
-            Register
+            Login
           </button>
         </div>
         <p class="text-center text-md text-gray-900">
@@ -52,9 +53,25 @@
 <script setup>
 import TextInput from "@/components/global/TextInput.vue";
 import {ref} from "vue";
+import axios from  "axios"
 
 const email   = ref(null)
 const password = ref(null)
+const errors = ref([])
+
+const login = async  () => {
+    errors.value = []
+
+  try {
+      let res = await axios.post('http://music-social-network-api.test/api/login',{
+          email: email.value,
+          password: password.value
+      })
+      console.log(res)
+  }catch (e) {
+    errors.value = e.response.data.errors
+  }
+}
 
 </script>
 
