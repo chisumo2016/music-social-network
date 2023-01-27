@@ -8,8 +8,10 @@
     - Later we will use the pinia  for state management , we need to store this data in local storage
         once we have logged in .
 
-## Pinia Setup in Vue CLI and Vue 3
-    - Objectives is to  completed the Backend and Front end  to communniicate
+## Pinia Setup in Vue CLI and Vue 3 (LOGIN )
+    - Objectives is to  completed the Backend and Front end  to communniicate,by installing Pinia package
+        We installed the axios to make a call to laravel backend, login to laravel appliication api,
+        We manage to get back the data with token and store it into Pinia state managament.
     - We have alot of to cover here
             Edit Profile Section with Image Cropper.
             Add Songs Section
@@ -37,5 +39,19 @@
     - Once is done ,we can test the application
     - Open login page and put email and password
     - Open network table and Application google chrome
+    - TEST PASSED
+password1234
+## Register user and store in Pinia
+    - The objectives of this topic is the same of above.
+    - Open the RegsiterView.vue file .
+        add the const errors = ref([])
+        add the rest of logic inside
+        add errors as well
+    - Test the application to see if the error is weoking
+    - Register the user via F1
+    - TEST PASSED
+    - Register is working.
+    - Add the location column to our user, so open an api netwok of laravel
+    - Add the those two fields in backend  and tested 
         
         

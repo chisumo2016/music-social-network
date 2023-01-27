@@ -11,7 +11,7 @@
                 placeholder="John"
                 v-model:input="firstName"
                 inputType="text"
-                error="This is a test error"
+                :error="errors.first_name ? errors.first_name[0] : ''"
             />
           </div>
           <div class="mb-4">
@@ -21,7 +21,7 @@
                 placeholder="Doe"
                 v-model:input="lastName"
                 inputType="text"
-                error="This is a text error"
+                :error="errors.last_name ? errors.last_name[0] : ''"
             />
           </div>
           <div class="mb-4">
@@ -31,7 +31,7 @@
                 placeholder="doe@gmail.com"
                 v-model:input="email"
                 inputType="text"
-                error="This is a test error"
+                :error="errors.email ? errors.email[0] : ''"
             />
           </div>
           <div class="mb-4">
@@ -41,7 +41,7 @@
                 placeholder="Password123"
                 v-model:input="password"
                 inputType="password"
-                error="This is a test error"
+                :error="errors.password ? errors.password[0] : ''"
             />
           </div>
           <div class="mb-4">
@@ -64,6 +64,7 @@
                 py-3
                 text-sm
                 tracking-wide"
+              @click="register"
               type="submit">
             Register
           </button>
@@ -82,12 +83,35 @@
 <script setup>
 import TextInput from "@/components/global/TextInput.vue";
 import {ref} from "vue";
+import axios from "axios";
+import {useUserStore} from "@/Store/user-store";
 
 const firstName = ref(null)
-const lastName = ref(null)
-const email = ref(null)
-const password = ref(null)
+const lastName  = ref(null)
+const email     = ref(null)
+const password  = ref(null)
 const confirmPassword = ref(null)
+const errors    = ref([])
+const  userStore = useUserStore()
+
+const register = async () => {
+    errors.value  = []
+
+    try {
+      let res = await axios.post('http://music-social-network-api.test/api/register',{
+        first_name  :   firstName.value,
+        last_name   :   lastName.value,
+        email       :   email.value,
+        password    :   password.value,
+        password_confirmation : confirmPassword.value,
+      })
+      console.log(res)
+
+      userStore.setUserDetails(res)
+    }catch (e) {
+      errors.value = e.response.data.errors
+    }
+}
 </script>
 
 <style scoped>
