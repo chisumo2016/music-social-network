@@ -53,5 +53,43 @@ password1234
     - Register is working.
     - Add the location column to our user, so open an api netwok of laravel
     - Add the those two fields in backend  and tested 
-        
+        AUTHENTICATED COMPLETED 
+
+## Axios and Bearer Token in Vue 3 | Pinia  (Edit Profile)
+    - objectives here is communicate with backend using Pinia  so we can edit our profile page.
+        Once you fill the page with correct information wee should send ouur token to tthe header as well
+    - Open the ProfileEdit.vue page 
+        add the all logic into script 
+        create a store file src/Store/profile/profile-store.js
+    - Test application : FAILED
+            Unauthenticated
+    - We need to put our bearer token to our header.
+            Duplicate mmain.js and call axios.js (src/axios.js) file.
+                Write the logic into axios.js file 
+            Just back to main.js and import axios (import './axios.js')
+            Go back to editProfile.vue and remove the url http://music-social-network-api.test/
+                    await.axios.post('users/' + ...... + '?_method=PUT')
+    - Inside to our application of Google chrome , wee can see 
+            Key                 Value
+            user               {id: bvcccfyh}
+    - Update the errors message on EditProfile page
+    - Tested the error -OK
+    - What is remaining is to update the Image.
+        In the backend(Laravel) we need to make our image service that we can inject into our user controller
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         

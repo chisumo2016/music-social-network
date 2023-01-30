@@ -17,7 +17,7 @@
             placeholder="John"
             v-model:input="firstName"
             inputType="text"
-            error="This is a test error"
+            :error="errors.first_name ? errors.first_name[0] : ''"
         />
       </div>
       <div class="w-full md:w-1/2 px-3">
@@ -26,7 +26,7 @@
             placeholder="Doe"
             v-model:input="lastName"
             inputType="text"
-            error="This is a test error"
+            :error="errors.last_name ? errors.last_name[0] : ''"
         />
       </div>
     </div>
@@ -37,7 +37,7 @@
             placeholder="Reading"
             v-model:input="location"
             inputType="text"
-            error="This is a test error"
+            :error="errors.location ? errors.location[0] : ''"
         />
       </div>
     </div>
@@ -65,8 +65,8 @@
         <TextArea
             label="Description"
             placeholder="Please enter some information here"
-            v-model="description"
-            error="This is a test error"
+            v-model:description="description"
+            :error="errors.description ? errors.description[0] : ''"
         />
       </div>
     </div>
@@ -74,6 +74,7 @@
       <div class="w-full px-3">
         <SubmitFormButton
             btnText="Update Profile"
+            @click="updateUser"
         />
       </div>
     </div>
@@ -81,12 +82,17 @@
 </template>
 <script setup>
 import TextInput from "@/components/global/TextInput";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import DisplayCropperButton from "@/components/global/DisplayCropperButton";
 import TextArea from "@/components/global/TextArea";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
 import CropperModal from "@/components/global/CropperModal";
 import CroppedImage from "@/components/global/CroppedImage";
+//import { useProfileStore } from "@/Store/profile/profile-store";
+import { useUserStore } from "@/Store/user-store";
+import axios from "axios";
+import {useRouter} from "vue-router";
+//import router from "@/router";
 
 const firstName = ref(null);
 const lastName = ref(null);
@@ -95,11 +101,47 @@ const description = ref(null);
 const showModal = ref(false)
 //const imageData = null
 let   image = ref(null)
+const  errors = ref([])
 
+const router = useRouter()
+//const profileStore = useProfileStore()
+const userStore = useUserStore()
+
+
+onMounted(() => {
+    firstName.value  = userStore.firstName    || null
+    lastName.value   = userStore.lastName     || null
+    location.value   = userStore.location     || null
+    description.value = userStore.description || null
+})
 
 const setCroppedImageData = (data) =>{
   //imageData = data
   image.value = data.imageUrl
+}
+
+const updateUser = async () =>{
+  errors.value = []
+
+  /**Form Data Object*/
+  let data = new FormData() ;
+
+  data.append('first_name' , firstName.value || '')
+  data.append('last_name' ,  lastName.value || '')
+  data.append('location' ,    location.value || '')
+  data.append('description' , description.value || '')
+
+  console.log(data)
+  try {
+      await axios.post('users/' + userStore.id  + '?_method=PUT', data)
+
+      await userStore.fetchUser()
+
+       router.push('/account/profile/')
+
+  }catch (e) {
+    errors.value = e.response.data.errors;
+  }
 }
 </script>
 
