@@ -1,5 +1,5 @@
 <template>
-    <pre>{{ image }}</pre>
+
   <div id="EditProfile" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
     <div class="text-gray-900 text-xl">Edit Profile </div>
     <div class="bg-green-500 w-full h-1"></div>
@@ -55,11 +55,11 @@
       <div class="w-full md:w-1/2 px-3">
         <CroppedImage
             label="Cropped Image"
-            :image="image"
+            :image="'http://music-social-network-api.test/images/users/' + image"
         />
       </div>
     </div>
-
+    {{ 'http://music-social-network-api.test/images/users/' + image }}
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full  px-3">
         <TextArea
@@ -99,7 +99,7 @@ const lastName = ref(null);
 const location = ref(null);
 const description = ref(null);
 const showModal = ref(false)
-//const imageData = null
+let imageData = null
 let   image = ref(null)
 const  errors = ref([])
 
@@ -113,10 +113,11 @@ onMounted(() => {
     lastName.value   = userStore.lastName     || null
     location.value   = userStore.location     || null
     description.value = userStore.description || null
+     image.value = userStore.image || null
 })
 
 const setCroppedImageData = (data) =>{
-  //imageData = data
+  imageData = data
   image.value = data.imageUrl
 }
 
@@ -131,7 +132,15 @@ const updateUser = async () =>{
   data.append('location' ,    location.value || '')
   data.append('description' , description.value || '')
 
-  console.log(data)
+  if(imageData){
+    data.append('image' , imageData.file || '')
+    data.append('height' ,imageData.height || '')
+    data.append('width' , imageData.width || '')
+    data.append('left' ,  imageData.left || '')
+    data.append('top' ,   imageData.top || '')
+  }
+
+  //console.log(data)
   try {
       await axios.post('users/' + userStore.id  + '?_method=PUT', data)
 

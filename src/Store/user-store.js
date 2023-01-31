@@ -22,7 +22,6 @@ export const useUserStore = defineStore('user', {
             this.$state.lastName    = res.data.user.last_name
             this.$state.email       = res.data.user.email
             this.$state.location    = res.data.user.location
-            //this.$state.image       = response.data.user.image
             this.$state.description = res.data.user.description
         },
         async fetchUser(){
@@ -34,6 +33,7 @@ export const useUserStore = defineStore('user', {
             this.$state.email       = res.data.user.email
             this.$state.location    = res.data.user.location
             this.$state.description = res.data.user.description
+            this.$state.image       = res.data.user.image
         },
 
         clearUser(){
@@ -43,6 +43,7 @@ export const useUserStore = defineStore('user', {
             this.$state.lastName    = null
             this.$state.email       = null
             this.$state.location    = null
+            this.$state.image    = null
             this.$state.description = null
         }
     },
