@@ -113,8 +113,11 @@ password1234
     - Change in the EditProfile file to user our .env configuration
         :image="'http://music-social-network-api.test/images/users/' + image"
     -STOP THE SERVER AND RESTART
-    
+        PLEASE REVISST
         
+## Profile Info with Pinia and Vue 
+    - Objective is to make our profile functional for one user.
+    - Open the ProfileSection.vue file, display all the informarion on the screen
 
 
 

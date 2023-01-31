@@ -3,7 +3,7 @@
   <div class="w-1/3">
     <img
         class="w-full rounded-lg h-auto shadow-lg"
-        src="https://via.placeholder.com/500"
+        :src="userStore.image"
         alt="Profile Pic"
     >
   </div>
@@ -12,10 +12,10 @@
       <div class="w-1/2">
         <h1
             class="text-2xl md:text-4xl text-left text-gray-900">
-          John Doe
+          {{userStore.firsName }} {{userStore.lastName }}
         </h1>
         <span class="text-md text-gray-700">
-          <i><b>Reading, UK</b></i>
+          <i><b>{{userStore.location }}</b></i>
         </span>
       </div>
       <div class="w-1/2 mt-1">
@@ -42,6 +42,9 @@ import RouterLinkButton from "@/components/global/RouterLinkButton";
 import SongSections from "@/components/partials/profile/SongSections";
 import YoutubeVideosSection from "@/components/partials/profile/YoutubeVideosSection";
 import PostsSection from "@/components/partials/profile/PostsSection";
+import {useUserStore} from "@/Store/user-store";
+
+const userStore = useUserStore()
 </script>
 
 <style scoped>
