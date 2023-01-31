@@ -96,6 +96,26 @@ password1234
         To writee ssome logic to display the user
         PASSED
 
+### Adding Dotenv to Vue CLI
+    - The objectivees of this lessonn is to be able to use the env file for our url
+    -Install Dotenv
+            https://www.npmjs.com/package/dotenv
+                npm i dotenv
+    - Create a file called .env file inside vue application
+        Add the URL for frontend and backend 
+        Stop the sserver and restart
+    - Go to user_store file  and add logic to use dotenv
+    - Download the image from pixabay and call as public/DefaultUserAvatar.png
+    - Change the url for axios.js too use the .env
+    - The go back to user-store.js file  change as well to use .env 
+    - Change in the loginView file to user our .env configuration
+    - Change in the RegisterView file to user our .env configuration
+    - Change in the EditProfile file to user our .env configuration
+        :image="'http://music-social-network-api.test/images/users/' + image"
+    -STOP THE SERVER AND RESTART
+    
+        
+
 
 
 

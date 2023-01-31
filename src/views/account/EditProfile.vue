@@ -56,6 +56,7 @@
         <CroppedImage
             label="Cropped Image"
             :image="'http://music-social-network-api.test/images/users/' + image"
+
         />
       </div>
     </div>
@@ -142,7 +143,7 @@ const updateUser = async () =>{
 
   //console.log(data)
   try {
-      await axios.post('users/' + userStore.id  + '?_method=PUT', data)
+      await axios.post('http://music-social-network-api.test/api/users/' + userStore.id  + '?_method=PUT', data)
 
       await userStore.fetchUser()
 

@@ -66,6 +66,7 @@ const login = async  () => {
 
   try {
       let res = await axios.post('http://music-social-network-api.test/api/login',{
+      //let res = await axios.post('api/login',{
           email: email.value,
           password: password.value
       })

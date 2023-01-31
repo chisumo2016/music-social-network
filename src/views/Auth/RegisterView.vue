@@ -99,6 +99,7 @@ const register = async () => {
 
     try {
       let res = await axios.post('http://music-social-network-api.test/api/register',{
+      //let res = await axios.post('api/register',{
         first_name  :   firstName.value,
         last_name   :   lastName.value,
         email       :   email.value,
