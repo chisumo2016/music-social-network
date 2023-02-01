@@ -17,7 +17,7 @@ let songsList = []
 
 onMounted(() => {
   mapSongs()
-  thePlayer()
+  //thePlayer()
 })
 const thePlayer = () =>{
  new APlayer({
@@ -57,6 +57,7 @@ const mapSongs = () =>{
     for (let i = 0; i <newSongs.length ; i++) {
       songsList.push(newSongs[i])
     }
+      thePlayer()
   console.log(newSongs)
 }
 </script>

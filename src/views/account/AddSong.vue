@@ -40,7 +40,7 @@
     </div>
     <SubmitFormButton
         @submit="addSong"
-        btnText="Add SSong"
+        btnText="Add Song"
     />
   </div>
 
@@ -50,10 +50,11 @@
 import TextInput from "@/components/global/TextInput";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
 import {ref} from "vue";
-import Swal from "../../sweetalert2.js"
+import Swal from "../../sweetalert2"
 import {useUserStore} from "@/Store/user-store";
 import axios from "axios";
-import {useSongStore} from "@/Store/song-store"; //../../s
+import {useSongStore} from "@/Store/song-store";
+import { useRouter} from "vue-router";
 
 let title    = ref(null);
 let song    = ref(null);
@@ -62,6 +63,7 @@ let errors  = ref([]);
 
 const userStore = useUserStore()
 const songStore = useSongStore()
+const router  = useRouter()
 
 
 const handleFileUpload = () =>{
@@ -88,6 +90,9 @@ const addSong = async () =>{
       await axios.post('http://music-social-network-api.test/api/songs',form)
 
     songStore.fetchSongsByUserId(userStore.id)
+    setTimeout(() =>{
+      router.push('/account/profile')
+    },200)
   }catch (err) {
     errors.value = err.response.data.errors
   }
