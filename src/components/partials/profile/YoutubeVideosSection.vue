@@ -20,10 +20,13 @@
         </div>
       </div>
     </div>
+    {{ VideoStore}}
     <div class="flex flex-wrap mb-4">
-      <div class="my-1 px-1 w-full md:w-1/2 lg:w-1/2">
-        <div class="text-xl text-gray-900">Video Title</div>
-        <iframe class="w-full h-60" src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" ></iframe>
+      <div
+          v-for="video in VideoStore.videos" :key="video"
+          class="my-1 px-1 w-full md:w-1/2 lg:w-1/2">
+        <div class="text-xl text-gray-900">{{ video.title}}</div>
+        <iframe class="w-full h-60" :src="video.url" ></iframe>
       </div>
 
     </div>
@@ -32,6 +35,16 @@
 
 <script setup>
 import RouterLinkButton from "@/components/global/RouterLinkButton";
+import {useVideoStore} from "@/Store/video-store";
+import {onMounted} from "vue";
+import {useUserStore} from "@/Store/user-store";
+
+const VideoStore = useVideoStore()
+const userStore = useUserStore()
+
+onMounted(() =>{
+  VideoStore.fetchVideosByUserId(userStore.id)
+})
 </script>
 
 <style scoped>

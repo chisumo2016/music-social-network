@@ -90,6 +90,7 @@ const addSong = async () =>{
       await axios.post('http://music-social-network-api.test/api/songs',form)
 
     songStore.fetchSongsByUserId(userStore.id)
+
     setTimeout(() =>{
       router.push('/account/profile')
     },200)

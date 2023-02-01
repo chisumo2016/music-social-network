@@ -4,13 +4,16 @@
     <div class="bg-red-500 w-full h-1 mb-4"></div>
 
     <div class="bg-white rounded px-8 pt-6 pb-8">
-      <div class="flex flex-wrap">
-        <div class="w-1/4 mr-auto  mt-2 text-lg p-1 text-gray-900">
-            1. This is a youtube video
-          <iframe  class="w-full h-20" src="https://www.youtube.com/embed/EcBjdgQH-2Q?autoplay=0"></iframe>
+      <div
+          v-for="(video, index) in videoStore.videos" :key="video"
+          class="flex flex-wrap items-center">
+        <div  class="w-1/4 mr-auto  mt-2 text-lg p-1 text-gray-900">
+              {{ ++ index  }} {{ video.title}}
+          <iframe  class="w-full h-20" :src="video.url"></iframe>
         </div>
         <div class="w-1/4 ml-auto p-1">
           <button
+              @click="deleteVideo(video)"
               class="
                 float-right
                 bg-transparent
@@ -30,7 +33,41 @@
 </template>
 
 <script setup>
+import axios from "axios";
+import {useUserStore} from "@/Store/user-store"; //../../store
+import  Swal from '../../sweetalert2'
+import {useVideoStore} from "@/Store/video-store";
 
+const videoStore = useVideoStore()
+const userStore = useUserStore()
+
+const deleteVideo = async  (video) =>{
+    Swal.fire({
+      title: 'Are you sure you want to delete this ?',
+      text: 'You won\t be able to revert this',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText:'Yes, delete it ',
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor:'#d33',
+    }).then(async (result) =>{
+     if (result.isConfirmed){
+      try {
+        await axios.delete('http://music-social-network-api.test/api/youtube/' + video.id)
+
+        videoStore.fetchVideosByUserId(userStore.id )
+
+        Swal.fire(
+            'Deleted!',
+            'Your video has been deleted!',
+            'success'
+        )
+      }catch (error) {
+        console.log(error)
+      }
+    }
+  })
+}
 </script>
 
 <style scoped>

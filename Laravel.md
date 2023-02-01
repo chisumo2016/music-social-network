@@ -185,10 +185,30 @@ password1234
     - Loop the in file v-for=""
     - add the useUserStore
     - Add the sweeetAlert2
-    - TEST APPLICATION: PASSES
+    - TEST APPLICATION: PASSED
     - Let Go back to AddSong vvue file
         add the redirect to accout-profile
     - Open the SongPlayer ,take the thePlayer() and putt after for loop
+    - TEST APPLICATION: PASSED
+            SONG SECTION COMPLETED.
+
+## Video display with Vue 3, Pinia, and Laravel API 
+    - Object is to be able to display all the video in front end.
+    - Copy the song-store.js and save  video-store.js 
+        add some fields and method
+    - After that open AddYoutubeVideo vue file
+        Add logic to add the yuoutube link
+    - Add sweetALERT2
+    - Add the router for redirectiong the page
+    - Add the sweetAlert2 file 
+    - Open the YoutubeVideoSection vue file .Purpose is to loop 
+        src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" 
+    - Implement the DeleteVideo  ,open the DeleteYoutube vue file
+    
+    
+
+ 
+
 
     
 

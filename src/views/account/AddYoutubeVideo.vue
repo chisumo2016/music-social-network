@@ -9,7 +9,7 @@
         placeholder="Cool New Video"
         v-model:input="title"
         inputType="text"
-        error="This is a test error"
+        :error="errors.title ? errors.title[0] : ''"
     />
     <TextInput
         class="mb-6"
@@ -17,10 +17,11 @@
         placeholder="QbYEfW09ZDk"
         v-model:input="videoCode"
         inputType="text"
-        error="This is a test error"
+        :error="errors.url ? errors.url[0] : ''"
     />
 
     <SubmitFormButton
+        @submit="addYoutubeVideoLink"
         btnText="Add Video"
     />
   </div>
@@ -30,6 +31,40 @@
 <script setup>
 import TextInput from "@/components/global/TextInput";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
+import {ref} from "vue";
+import axios from "axios";
+import {useUserStore} from "@/Store/user-store";
+import Swal from "../../sweetalert2"
+import { useRouter} from "vue-router";
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const  title = ref(null)
+const  videoCode = ref(null)
+const  errors = ref([])
+
+
+const addYoutubeVideoLink = async () =>{
+  errors.value = []
+  try {
+      await axios.post('http://music-social-network-api.test/api/youtube',{
+        /**Object*/
+        user_id: userStore,
+        title: title.value,
+        url: videoCode.value,
+      })
+      Swal.fire(
+          'New Video Added!',
+          'You added a video with name "' + title.value + '"',
+          'success'
+      )
+    router.push('/account/profile')
+  }catch (err) {
+    errors.value = err.response.data.errors
+    console.log('err addYoutubeVideoLink ', err)
+  }
+}
 </script>
 
 <style scoped>
