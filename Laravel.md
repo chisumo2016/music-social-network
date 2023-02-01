@@ -118,6 +118,37 @@ password1234
 ## Profile Info with Pinia and Vue 
     - Objective is to make our profile functional for one user.
     - Open the ProfileSection.vue file, display all the informarion on the screen
+    - Add the logic to both part to display infoormation ProfileSection.vue and ProfileAboutSSection
+
+### Laravel File Upload with Vue 3 | Axios | Add Song
+    - Objective for this section is to be able to add the Songs
+    - Functionality to send a request to backend(laravel) via store method.
+    - We can get songs by user_id as column
+    -Add the Validation
+    -State Management to store song
+    - Has on the backend of Song we  need to generate model, migration ,  and controller
+    - Create a Model , Migration , controller and resource for our songs
+        php artisan make:model Song -mc --resource 
+    - Add data modelling inside the migration
+        php artisan migrate  
+    - Put the SongController inside the API 
+    - Add Mass Assigment on Song Model
+    - Upload the MP3 files as upload  via store() method
+    - Make a customs request validation for our song
+        php artisan make:request Song/StoreSongRequest 
+    - Add the functionality to delete the song
+    - Add the api point in api route file (two api route)
+    - Add a new folder Songs in public
+
+       FRONT END VUE 
+    - Jump to front end of VUE Application
+    - Add the SweetAlert
+        https://sweetalert2.github.io/#download
+          npm  install sweetalert2  
+    - Duplicate axios.js file call sweetaler2
+    - Copy the import from sweetalert2 doc
+    - Open AddSong.vue file
+    
 
 
 

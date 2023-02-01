@@ -9,7 +9,7 @@
         placeholder="Cool New Song"
         v-model:input="title"
         inputType="text"
-        error="This is a test error"
+        :error="errors.title ? errors.title[0] : ''"
     />
     <div class="w--full">
       <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">Select image </label>
@@ -35,10 +35,11 @@
                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
             type="file"
             id="image"
-            ref="fileInput"
-            @change="getUploadedImage">
+            ref="file"
+            @change="handleFileUpload">
     </div>
     <SubmitFormButton
+        @submit="addSong"
         btnText="Add SSong"
     />
   </div>
@@ -46,9 +47,46 @@
 </template>
 
 <script setup>
-
 import TextInput from "@/components/global/TextInput";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
+import {ref} from "vue";
+import Swal from "../../sweetalert2.js"
+import {useUserStore} from "@/Store/user-store";
+import axios from "axios"; //../../s
+
+let title    = ref(null);
+let song    = ref(null);
+let file    = ref(null);
+let errors  = ref([]);
+const userStore = useUserStore()
+
+const handleFileUpload = () =>{
+  song.value = file.value.files[0]
+}
+
+const addSong = async () =>{
+  if (!song.value){
+    Swal.fire(
+        'Opps, something went wrong!',
+        'You forgot to upload the mp3 file!',
+        'warning'
+    )
+    return null
+  }
+  /**Upload */
+  try {
+      let form = new FormData()
+      form.append('user_id', userStore.id)
+      form.append('title',   title.value || '')
+      form.append('file',   song.value)
+
+
+      await axios.post('http://music-social-network-api.test/api/songs',form)
+  }catch (err) {
+    errors.value = err.response.data.errors
+  }
+}
+
 </script>
 
 <style scoped>

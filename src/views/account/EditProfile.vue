@@ -60,7 +60,7 @@
         />
       </div>
     </div>
-    {{ 'http://music-social-network-api.test/images/users/' + image }}
+<!--    {{ 'http://music-social-network-api.test/images/users/' + image }}-->
     <div class="flex flex-wrap mt-4 mb-6">
       <div class="w-full  px-3">
         <TextArea
