@@ -52,13 +52,17 @@ import SubmitFormButton from "@/components/global/SubmitFormButton";
 import {ref} from "vue";
 import Swal from "../../sweetalert2.js"
 import {useUserStore} from "@/Store/user-store";
-import axios from "axios"; //../../s
+import axios from "axios";
+import {useSongStore} from "@/Store/song-store"; //../../s
 
 let title    = ref(null);
 let song    = ref(null);
 let file    = ref(null);
 let errors  = ref([]);
+
 const userStore = useUserStore()
+const songStore = useSongStore()
+
 
 const handleFileUpload = () =>{
   song.value = file.value.files[0]
@@ -66,7 +70,7 @@ const handleFileUpload = () =>{
 
 const addSong = async () =>{
   if (!song.value){
-    Swal.fire(
+    await Swal.fire(
         'Opps, something went wrong!',
         'You forgot to upload the mp3 file!',
         'warning'
@@ -82,6 +86,8 @@ const addSong = async () =>{
 
 
       await axios.post('http://music-social-network-api.test/api/songs',form)
+
+    songStore.fetchSongsByUserId(userStore.id)
   }catch (err) {
     errors.value = err.response.data.errors
   }

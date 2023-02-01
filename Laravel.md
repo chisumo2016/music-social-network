@@ -147,7 +147,33 @@ password1234
           npm  install sweetalert2  
     - Duplicate axios.js file call sweetaler2
     - Copy the import from sweetalert2 doc
-    - Open AddSong.vue file
+    - Open AddSong.vue file and implemennt all the logic
+    - Add button will upload the file into public folder to ouur backend.
+    - TEST THE APPLICATION - PASSED
+    - BUT Sweet alert didnt work
+
+##  Get MP3 Files from Laravel API | Pinia
+    - Objective is to get the MP3 file songs by user id 
+    - We gonn use the Pinia Store  and stores the song on
+    - Make a controller in backend API/SongssByUserController
+        php artisan make:controller API/SongssByUserController --resource
+        Only one method is needed index(){}
+        Implement the logic into index(){} method
+    - Api the routes for song by user id
+        FRONT END
+    - Jump into Front End.
+    - Go and  make another store, duplicate the user-store.js file 
+    - Call it song-store.js and add the logic into script
+    - Go to AddSong.vue Files  and implement the useSongStore
+    - TEST THE APPLICATION - PASSED 
+    - Open google -application  - All song by id
+    - Open SongsSection.vue file  do we can output /loop the songs
+    - Open SongPlaye.vue file  do we can output /loop the songs
+            add all the logic to loop the songs
+    - Save all the image into backennd and user pini to show it
+
+    
+
     
 
 

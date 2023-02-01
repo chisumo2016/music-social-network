@@ -29,6 +29,9 @@
 <script setup>
 import RouterLinkButton from "@/components/global/RouterLinkButton";
 import SongPlayer from "@/components/partials/profile/SongPlayer";
+//import {useSongStore} from "@/Store/song-store"; //../../../s
+
+//const songStore = useSongStore()
 </script>
 
 <style scoped>
