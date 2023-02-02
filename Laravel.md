@@ -208,10 +208,29 @@ password1234
     VIDEO SECTION FINISH
     
     
-## Vue 3 and Laravel API CRUD | Laravel CRUD | Posts Section 
+## Vue 3 an## Vue 3 and Laravel API CRUD | Laravel CRUD | Posts Section
     - Objectives of this section is to be able to CRUD the Post
-    - Create 
- 
+    - Create a Model , Migration , controller and resource for our songs
+        php artisan make:model Post -mc --resource 
+    - Put the VideoController inside the API 
+    -Add the Validation request 
+        php artissan make:request Post/StorePostRequest      
+        php artisan make:request Post/UpdatePostRequest 
+    - Inject into PostController in both store and update method
+    - Setup the relationship
+    - Add the Mass Assigment 
+    - Implement all logic for both methods
+    - Add the api route for posts
+     - Add data modelling inside the migration
+        php artisan migrate 
+      FINISH THE BACKEND 
+   
+ ## Create a Post with Vue 3 and Laravel API |Tailwind CSS | Laravel 9 | Vue CLI | Javascript |
+    - Objective for this section is to create some post via vue js
+    - Copy the code from update from EditProfile.vue file and paste into CreatePost.vue file
+    - Amend the logic to reflect what file does
+    - Add the SSweetAlert msg
+    - Add error msessage on UI
 
 
     

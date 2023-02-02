@@ -72,7 +72,7 @@ const handleFileUpload = () =>{
 
 const addSong = async () =>{
   if (!song.value){
-    await Swal.fire(
+     Swal.fire(
         'Opps, something went wrong!',
         'You forgot to upload the mp3 file!',
         'warning'

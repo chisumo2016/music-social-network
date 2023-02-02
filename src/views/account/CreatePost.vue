@@ -1,5 +1,5 @@
 <template>
-    <pre>{{ image }}</pre>
+
   <div id="CreatePost" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
     <div class="text-gray-900 text-xl">Create Post </div>
     <div class="bg-green-500 w-full h-1"></div>
@@ -17,7 +17,7 @@
             placeholder="Awesome Concert"
             v-model:input="title"
             inputType="text"
-            error="This is a test error"
+            :error="errors.title ? errors.title[0] : ''"
         />
       </div>
       <div class="w-full md:w-1/2 px-3">
@@ -26,7 +26,7 @@
             placeholder="Reading"
             v-model:input="location"
             inputType="text"
-            error="This is a test error"
+            :error="errors.location ? errors.location[0] : ''"
         />
       </div>
     </div>
@@ -54,14 +54,15 @@
         <TextArea
             label="Description"
             placeholder="Please enter some information here"
-            v-model="description"
-            error="This is a test error"
+            v-model:description="description"
+            :error="errors.description ? errors.description[0] : ''"
         />
       </div>
     </div>
     <div class="flex flex-wrap mt-8 mb-6">
       <div class="w-full px-3">
         <SubmitFormButton
+            @submit="createPost"
             btnText="Create Post"
         />
       </div>
@@ -76,18 +77,60 @@ import TextArea from "@/components/global/TextArea";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
 import CropperModal from "@/components/global/CropperModal";
 import CroppedImage from "@/components/global/CroppedImage";
+import axios from "axios";
+import {useUserStore} from "@/Store/user-store";
+import Swal from "@/sweetalert2";
+import {useRouter} from "vue-router";
 
-const title = ref(null);
-const location = ref(null);
-const description = ref(null);
-const showModal = ref(false)
-//const imageData = null
-let   image = ref(null)
+const userStore   = useUserStore()
+const router    = useRouter()
+
+let showModal   = ref(false)
+let title       = ref(null);
+let location    = ref(null);
+let description = ref(null);
+let imageData   = null
+let image     = ref(null)
+let  errors     = ref([])
 
 
 const setCroppedImageData = (data) =>{
-  //imageData = data
+  imageData = data
   image.value = data.imageUrl
+}
+const createPost = async () =>{
+  errors.value = []
+
+  /**Form Data Object*/
+  let data = new FormData() ;
+
+  data.append('user_id' , userStore.id || '')
+  data.append('title' ,   title.value || '')
+  data.append('location' ,    location.value || '')
+  data.append('description' , description.value || '')
+
+  if (imageData) {
+    data.append('image', imageData.file || '')
+    data.append('height', imageData.height || '')
+    data.append('width', imageData.width || '')
+    data.append('left', imageData.left || '')
+    data.append('top', imageData.top || '')
+  }
+
+  //console.log(data)
+  try {
+    await axios.post('http://music-social-network-api.test/api/posts/', data)
+    Swal.fire(
+        'New post created!',
+        'The post you created was called "' + title.value + '"',
+        'success'
+    )
+
+    router.push('/account/profile/')
+
+  }catch (e) {
+    errors.value = e.response.data.errors;
+  }
 }
 </script>
 
