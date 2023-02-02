@@ -20,10 +20,10 @@
         </div>
       </div>
     </div>
-    {{ VideoStore}}
     <div class="flex flex-wrap mb-4">
+    {{ videoStore}}
       <div
-          v-for="video in VideoStore.videos" :key="video"
+          v-for="video in videoStore.videos"  :key="video"
           class="my-1 px-1 w-full md:w-1/2 lg:w-1/2">
         <div class="text-xl text-gray-900">{{ video.title}}</div>
         <iframe class="w-full h-60" :src="video.url" ></iframe>
@@ -39,11 +39,12 @@ import {useVideoStore} from "@/Store/video-store";
 import {onMounted} from "vue";
 import {useUserStore} from "@/Store/user-store";
 
-const VideoStore = useVideoStore()
-const userStore = useUserStore()
+const userStore  = useUserStore()
+const videoStore = useVideoStore()
 
-onMounted(() =>{
-  VideoStore.fetchVideosByUserId(userStore.id)
+
+onMounted(async () =>{
+  await videoStore.fetchVideosByUserId(userStore.id)
 })
 </script>
 

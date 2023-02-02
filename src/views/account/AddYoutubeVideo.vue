@@ -37,20 +37,22 @@ import {useUserStore} from "@/Store/user-store";
 import Swal from "../../sweetalert2"
 import { useRouter} from "vue-router";
 
-const userStore = useUserStore()
 const router = useRouter()
+const userStore = useUserStore()
+
 
 const  title = ref(null)
 const  videoCode = ref(null)
 const  errors = ref([])
 
 
-const addYoutubeVideoLink = async () =>{
+const addYoutubeVideoLink = async () => {
   errors.value = []
+
   try {
       await axios.post('http://music-social-network-api.test/api/youtube',{
         /**Object*/
-        user_id: userStore,
+        user_id: userStore.id,
         title: title.value,
         url: videoCode.value,
       })
@@ -59,7 +61,8 @@ const addYoutubeVideoLink = async () =>{
           'You added a video with name "' + title.value + '"',
           'success'
       )
-    router.push('/account/profile')
+     router.push('/account/profile')
+
   }catch (err) {
     errors.value = err.response.data.errors
     console.log('err addYoutubeVideoLink ', err)

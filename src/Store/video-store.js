@@ -11,7 +11,6 @@ export const useVideoStore = defineStore('video', {
           let res = await axios.get('http://music-social-network-api.test/api/youtube/' + userId)
             //let res = await axios.get('api/users/' + this.$state.id)
             this.$state.videos    = res.data.videos_by_user
-
         },
 
         clearVideos(){

@@ -204,9 +204,13 @@ password1234
     - Open the YoutubeVideoSection vue file .Purpose is to loop 
         src="https://www.youtube.com/embed/34nXJ7bd7Ro?autoplay=0" 
     - Implement the DeleteVideo  ,open the DeleteYoutube vue file
-    
-    
 
+    VIDEO SECTION FINISH
+    
+    
+## Vue 3 and Laravel API CRUD | Laravel CRUD | Posts Section 
+    - Objectives of this section is to be able to CRUD the Post
+    - Create 
  
 
 
