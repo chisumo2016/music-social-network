@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <div class="mx-auto py-4">
       <div class="flex flex-wrap font-bold text-gray-100">
@@ -14,32 +15,31 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-wrap mb-4">
-      <div class="my-1 px-1 w-full md:w-1/2 lg:w-1/2">
+    <div  class="flex flex-wrap mb-4">
+      <div
+          v-for="post in postStore.posts" :key="post"
+          class="my-1 px-1 w-full md:w-1/2 lg:w-1/2">
 
         <div class="rounded-lg border">
           <a href="#">
-            <img class="rounded-t-lg" src="https://api.lorem.space/image/movie?w=500&h=500" alt="" />
+            <img class="rounded-t-lg" :src="postStore.postImage(post.image)" alt="" />
           </a>
           <div class="p-2 md:p-4">
             <div class="text-lg">
               <router-link
-                  to=""
+                  :to="'/account/post-by-id/' + post.id"
                   class="
                   underline
                   text-blue-500
                   hover:text-blue-600
                   "
                 >
-                Test Title
+                {{ post.title }}
               </router-link>
             </div>
-              <p class="py-2">Location: Test Location </p>
+              <p class="py-2">Location:  {{ post.location }}</p>
               <p class="text-gray-dark text-md">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                . Est excepturi iusto nihil quaerat quos similique voluptatem!
-                 Adipisci cumque, deleniti harum itaque labore molestiae non odit
-                 quas quis quisquam suscipit, vero.
+                {{ post.description }}
               </p>
               <div class="mt-2 flex items-center justify-end">
                 <router-link
@@ -58,6 +58,7 @@
                  Edit Post
                 </router-link>
                 <button
+                    @click="deletePost(post.title, post.id)"
                     class="
                       bg-red-500
                       hover:bg-red-700
@@ -69,7 +70,7 @@
                       rounded-full
                     "
                 >
-                  Post Post
+                  Delete Post
                 </button>
               </div>
           </div>
@@ -83,6 +84,40 @@
 
 <script setup>
 import RouterLinkButton from "@/components/global/RouterLinkButton";
+import {usePostStore} from "@/Store/post-store";
+import Swal from "@/sweetalert2";
+import axios from "axios";
+import {useUserStore} from "@/Store/user-store"; //../../
+
+const postStore = usePostStore()
+const userStore = useUserStore()
+const deletePost = async  (title, id) =>{
+  Swal.fire({
+    title: 'Are you sure you want to delete this "' + title + '"',
+    text: 'You won\t be able to revert this',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText:'Yes, delete it ',
+    confirmButtonColor:'#3085d6',
+    cancelButtonColor:'#d33',
+  }).then(async (result) =>{
+    if (result.isConfirmed){
+      try {
+        await axios.delete('http://music-social-network-api.test/api/posts/' + id)
+
+        postStore.fetchPostsByUserId(userStore.id )
+
+        Swal.fire(
+            'Deleted!',
+            'Your video has been deleted!',
+            'success'
+        )
+      }catch (error) {
+        console.log(error)
+      }
+    }
+  })
+}
 </script>
 
 <style scoped>

@@ -8,8 +8,6 @@
 </template>
 
 <script setup>
-
-
 import {useUserStore} from "@/Store/user-store"; //../.../.../
 
 const userStore = useUserStore()

@@ -11,12 +11,14 @@
         p-2
         py-1
     ">
-    Number of songs  6
+    Number of songs {{ songStore.songs.length }}
   </div>
 </template>
 
 <script setup>
+import {useSongStore} from "@/Store/song-store";
 
+const songStore = useSongStore()
 </script>
 
 <style scoped>

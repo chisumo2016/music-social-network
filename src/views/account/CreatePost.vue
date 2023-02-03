@@ -1,5 +1,4 @@
 <template>
-
   <div id="CreatePost" class="container max-w-4xl mx-auto pt-20 pb-20 px-6">
     <div class="text-gray-900 text-xl">Create Post </div>
     <div class="bg-green-500 w-full h-1"></div>
@@ -79,11 +78,13 @@ import CropperModal from "@/components/global/CropperModal";
 import CroppedImage from "@/components/global/CroppedImage";
 import axios from "axios";
 import {useUserStore} from "@/Store/user-store";
+import {usePostStore} from "@/Store/post-store";
 import Swal from "@/sweetalert2";
 import {useRouter} from "vue-router";
 
 const userStore   = useUserStore()
-const router    = useRouter()
+const postStore   = usePostStore()
+const router      = useRouter()
 
 let showModal   = ref(false)
 let title       = ref(null);
@@ -120,6 +121,9 @@ const createPost = async () =>{
   //console.log(data)
   try {
     await axios.post('http://music-social-network-api.test/api/posts/', data)
+
+    await postStore.fetchPostsByUserId(userStore.id)
+
     Swal.fire(
         'New post created!',
         'The post you created was called "' + title.value + '"',

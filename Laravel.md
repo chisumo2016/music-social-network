@@ -229,8 +229,41 @@ password1234
     - Objective for this section is to create some post via vue js
     - Copy the code from update from EditProfile.vue file and paste into CreatePost.vue file
     - Amend the logic to reflect what file does
-    - Add the SSweetAlert msg
+    - Add the SweetAlert msg
     - Add error msessage on UI
+    - TEST  APPLICATION PASSED
+
+## Get and Delete with Vue 3 and Laravel API | Vue CLI | Pinia
+    - The objective of this lesson is to get individual post by Id and delete the record.
+    - Add the endpoint to backend of LAravel  
+    - Create a Controller in  backend of LAravel (API/PostByUserController)
+        php artisan make:controller API/PostByUserController --resource 
+        Delete everything except show method
+        Add the api route
+    - Jump into Front end.
+    - In front end we gonna use the Pinia store to loop all the posts by user id in PostSection.vue
+    - Open the PostSection.vue file## Get and Delete with Vue 3 and Laravel API | Vue CLI | Pinia
+    - The objective of this lesson is to get individual post by Id and delete the record.
+    - Add the endpoint to backend of LAravel  
+    - Create a Controller in  backend of LAravel (API/PostByUserController)
+        php artisan make:controller API/PostByUserController --resource 
+        Delete everything except show method
+        Add the api route
+    - Jump into Front end.
+    - In front end we gonna use the Pinia store to loop all the posts by user id in PostSection.vue
+    - Open the PostSection.vue file
+        Import all the post by user_id from our Pinia Store
+    - Copy the Video-store.js , duplicate and call post-store.js
+       Adjust some logic based of file
+    - Open the CreatePost.vue file , import  usePostStore and use the variable  postStore to 
+       fetch post by userId (fetchPostsByUserId)
+    - Open the PostsSections.vue file and import usePostStore and loop through all our posts
+    - Attach our image in the Pinia store in order to show our image, open post-store.js
+     add the method postImage(){}  implemente the logic
+    - Open the PostsSSection.vue file import the method to display the imag.
+    - TEST APPLICATION: Image doesn't work
+    - Implement the Delete functionality on the Post
+    - Copy the code from DeleteYoutube.vue file
 
 
     
