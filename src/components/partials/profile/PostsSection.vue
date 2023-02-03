@@ -43,7 +43,7 @@
               </p>
               <div class="mt-2 flex items-center justify-end">
                 <router-link
-                    to=""
+                    :to="'/account/edit-post/' + post.id"
                     class="
                       bg-blue-500
                       hover:bg-blue-700
@@ -118,6 +118,8 @@ const deletePost = async  (title, id) =>{
     }
   })
 }
+
+
 </script>
 
 <style scoped>

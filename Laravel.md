@@ -265,6 +265,22 @@ password1234
     - Implement the Delete functionality on the Post
     - Copy the code from DeleteYoutube.vue file
 
+## Vue 3 Route Params | Edit Post by Id
+    - The objective of this lesson is to edit the post and display on the form once you click Edit button
+    - We have already the function on the API.
+    - Open the PostsSSection.vue file 
+        - add the  params route in router-link
+    - Open router.js file 
+        {
+        path: 'edit-post/:id',
+        name: 'EditPost',
+        component: EditPost
+      },
+    - Open the EditPost.vue file
+        * Create a function called getPostById()
+        * Add all logic inside thee method , get route params from 
+        * Copy all the logic from CreatePost.vue file in createPost method
+
 
     
 

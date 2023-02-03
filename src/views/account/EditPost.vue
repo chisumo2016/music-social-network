@@ -16,7 +16,7 @@
             placeholder="Awesome Concert"
             v-model:input="title"
             inputType="text"
-            error="This is a test error"
+            :error="errors.title ? errors.title[0] : ''"
         />
       </div>
       <div class="w-full md:w-1/2 px-3">
@@ -25,7 +25,7 @@
             placeholder="Reading"
             v-model:input="location"
             inputType="text"
-            error="This is a test error"
+            :error="errors.location ? errors.location[0] : ''"
         />
       </div>
     </div>
@@ -53,14 +53,15 @@
         <TextArea
             label="Description"
             placeholder="Please enter some information here"
-            v-model="description"
-            error="This is a test error"
+            v-model:description="description"
+            :error="errors.description ? errors.description[0] : ''"
         />
       </div>
     </div>
     <div class="flex flex-wrap mt-8 mb-6">
       <div class="w-full px-3">
         <SubmitFormButton
+            @submit="updatePost"
             btnText="Update Post"
         />
       </div>
@@ -69,24 +70,93 @@
 </template>
 <script setup>
 import TextInput from "@/components/global/TextInput";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import DisplayCropperButton from "@/components/global/DisplayCropperButton";
 import TextArea from "@/components/global/TextArea";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
 import CropperModal from "@/components/global/CropperModal";
 import CroppedImage from "@/components/global/CroppedImage";
+import axios from "axios";
 
-const title = ref(null);
-const location = ref(null);
-const description = ref(null);
+import {usePostStore} from "@/Store/post-store";
+import {useRoute, useRouter} from "vue-router";
+import Swal from "@/sweetalert2";
+import {useUserStore} from "@/Store/user-store";
+
+const route = useRoute()
+const router = useRouter()
+const postStore = usePostStore()
+const userStore = useUserStore()
+
+let title = ref(null);
+let location = ref(null);
+let description = ref(null);
 const showModal = ref(false)
-//const imageData = null
+let imageData = null
 let   image = ref(null)
+let   errors = ref([])
 
-
+onMounted(async () =>{
+  await getPostById()
+})
 const setCroppedImageData = (data) =>{
-  //imageData = data
+  imageData = data
   image.value = data.imageUrl
+}
+
+const getPostById = async  () =>{
+      try {
+            let res = await axios.get('http://music-social-network-api.test/api/posts/' + route.params.id)
+            console.log(res)
+
+            title.value         = res.data.title
+            location.value      = res.data.location
+            image.value         =  postStore.postImage(res.data.image)
+            description.value   = res.data.description
+      }catch (err) {
+
+           errors.value = err.response.data.errors
+      }
+
+}
+
+const updatePost = async () =>{
+  errors.value = []
+
+  /**Form Data Object*/
+  let data = new FormData() ;
+
+
+  data.append('title' ,   title.value || '')
+  data.append('location' ,    location.value || '')
+  data.append('description' , description.value || '')
+
+  if (imageData) {
+    data.append('id', userStore.id || '')
+    data.append('image', imageData.file || '')
+    data.append('height', imageData.height || '')
+    data.append('width', imageData.width || '')
+    data.append('left', imageData.left || '')
+    data.append('top', imageData.top || '')
+  }
+
+  //console.log(data)
+  try {
+    await axios.post('http://music-social-network-api.test/api/posts/' + route.params.id + '?_method=PUT', data)
+
+    await postStore.fetchPostsByUserId(userStore.id)
+
+    Swal.fire(
+        'Updated created!',
+        'The post you updated was called "' + title.value + '"',
+        'success'
+    )
+
+    router.push('/account/profile/')
+
+  }catch (e) {
+    errors.value = e.response.data.errors;
+  }
 }
 </script>
 
