@@ -42,6 +42,10 @@ export const useUserStore = defineStore('user', {
             // }
             //this.$state.image       = res.data.user.image
         },
+        userImage(image){
+            return "http://music-social-network-api.test/api/" + 'images/users/' + image
+            //return process.env.VUE_APP_API_URL + 'images/posts/' + image
+        },
 
         clearUser(){
             this.$state.id          = null

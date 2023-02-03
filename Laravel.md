@@ -279,9 +279,23 @@ password1234
     - Open the EditPost.vue file
         * Create a function called getPostById()
         * Add all logic inside thee method , get route params from 
-        * Copy all the logic from CreatePost.vue file in createPost method
+        * Copy all the logic from CreatePost.vue file in createPost method and dump into Editpost Vue
+        * Add the router and route imprt
+       * Change CreatePost into UpdatePost
+       * Make Validation for image in createPost.vue
 
-
+### Post By ID in Vue 3 with Axios and Laravel API
+    - The objective of this lesson is to view that post by Id
+    -  Open the PostById.vue file
+        * Add the logic to getPostById() method
+        *  Import route
+        * Add the route in router.js   /:id
+         {
+             path: 'post-by-id/:id',
+             name: 'PostById',
+             component: PostById
+           },
+    - Display the image using store ,THIS STILL THE PROBLEM
     
 
     
