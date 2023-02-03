@@ -47,9 +47,9 @@ import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 const postStore = usePostStore()
 const userStore = useUserStore()
 
-let page = ref(1)
-let pageCount = ref(null)
-let posts = ref(null)
+let page        = ref(1)
+let pageCount   = ref(null)
+let posts       = ref(null)
 
 onMounted(async  () =>{
   await getPosts()
@@ -58,7 +58,7 @@ const getPosts = async () =>{
   try {
     let res = await axios.get('http://music-social-network-api.test/api/posts?page=' + page.value)
     pageCount.value = res.data.page_count
-    posts.value = res.data.paginate.data
+    posts.value     = res.data.paginate.data
   }catch (e) {
     console.log(e)
   }

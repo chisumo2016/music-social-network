@@ -12,13 +12,13 @@
       <div class="w-1/2">
         <h1
             class="text-2xl md:text-4xl text-left text-gray-900">
-          {{userStore.firsName }} {{userStore.lastName }}
+          {{profileStore.firsName }} {{profileStore.lastName }}
         </h1>
         <span class="text-md text-gray-700">
-          <i><b>{{userStore.location }}</b></i>
+          <i><b>{{profileStore.location }}</b></i>
         </span>
       </div>
-      <div class="w-1/2 mt-1">
+      <div class="w-1/2 mt-1" v-if="userStore.id == route.params.id">
         <RouterLinkButton
             btnText="Edit Profile"
             color="green"
@@ -43,8 +43,18 @@ import SongSections from "@/components/partials/profile/SongSections";
 import YoutubeVideosSection from "@/components/partials/profile/YoutubeVideosSection";
 import PostsSection from "@/components/partials/profile/PostsSection";
 import {useUserStore} from "@/Store/user-store";
+import {useProfileStore} from "@/Store/profile-store";
+import {onMounted} from "vue";
+import {useRoute} from "vue-router";
 
 const userStore = useUserStore()
+const profileStore = useProfileStore()
+
+const route = useRoute()
+
+onMounted(async () =>{
+  await profileStore.fetchProfileById(route.params.id)
+})
 </script>
 
 <style scoped>

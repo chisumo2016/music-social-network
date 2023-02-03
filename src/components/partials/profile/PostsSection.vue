@@ -6,7 +6,9 @@
         <div class="text-gray-900 text-xl">Posts</div>
         <div class="bg-green-500 w-full h-1"></div>
 
-        <div class="w-full mt-4">
+        <div
+            v-if="userStore.id == route.params.id"
+            class="w-full mt-4">
           <RouterLinkButton
               btnText="Create Post"
               color="green"
@@ -41,7 +43,9 @@
               <p class="text-gray-dark text-md">
                 {{ post.description }}
               </p>
-              <div class="mt-2 flex items-center justify-end">
+              <div
+                  v-if="userStore.id == route.params.id"
+                  class="mt-2 flex items-center justify-end">
                 <router-link
                     :to="'/account/edit-post/' + post.id"
                     class="
@@ -87,10 +91,14 @@ import RouterLinkButton from "@/components/global/RouterLinkButton";
 import {usePostStore} from "@/Store/post-store";
 import Swal from "@/sweetalert2";
 import axios from "axios";
-import {useUserStore} from "@/Store/user-store"; //../../
+import {useUserStore} from "@/Store/user-store";
+import {useRoute} from "vue-router"; //../../
 
 const postStore = usePostStore()
 const userStore = useUserStore()
+const route     = useRoute()
+
+
 const deletePost = async  (title, id) =>{
   Swal.fire({
     title: 'Are you sure you want to delete this "' + title + '"',

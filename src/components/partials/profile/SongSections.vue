@@ -5,7 +5,9 @@
         <div class="text-gray-900 text-xl">Songs</div>
         <div class="bg-green-500 w-full h-1"></div>
 
-        <div class="w-full mt-4">
+        <div
+            v-if="userStore.id == route.params.id"
+            class="w-full mt-4">
           <RouterLinkButton
               class="ml-3"
               btnText="Delete Song"
@@ -29,9 +31,11 @@
 <script setup>
 import RouterLinkButton from "@/components/global/RouterLinkButton";
 import SongPlayer from "@/components/partials/profile/SongPlayer";
-//import {useSongStore} from "@/Store/song-store"; //../../../s
+import {useUserStore} from "@/Store/user-store";
+import {useRoute} from "vue-router"; //../../../s
 
-//const songStore = useSongStore()
+const userStore = useUserStore()
+const route =useRoute()
 </script>
 
 <style scoped>

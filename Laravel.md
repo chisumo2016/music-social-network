@@ -309,7 +309,48 @@ password1234
             * Import  that package into PostsSection.vue file
               import VPagination from "@hennge/vue3-pagination";
               import "@hennge/vue3-pagination/dist/vue3-pagination.css";
-         
+    - Add the logic to display all posts 
+    - Implement the logic for paginate
+    - TESTED APPLICATION PASSED - IMAGE NO
+
+## Build a Pinia Store in Vue 3 with Tailwind CSS | Profile Section
+    - The objective of this lesson is to make our application to use Multi user rather than single user.
+    - We gonna makee the Pinia store and change some logic
+    - We gonna duplicate the user-store.js and call profile-store.js
+        * Remove token 
+        * Remove setUserDetails() method
+        * Remove fetchProfileById() method
+        * Change into useprofileStore
+        *
+    - Open router.js file and change 
+          {
+        path: 'profile',
+        name: 'ProfileSection',
+        component: ProfileSection
+      }, 
+      {
+        path: 'profile/:id',
+        name: 'ProfileSection',
+        component: ProfileSection
+       }, }, 
+    - Open the ProfileSection.vue file
+          * add const profileStore = useProfileStore()
+          * add unMounted()
+      
+     - We're going to chhange the varioble to use profileStore
+       {{userStore.firsName }} {{userStore.lastName }}
+       {{profileStore.firsName }} {{profileStore.lastName }}
+     - Add v-if inside the profileSection
+     - Open the ProfileAboutSection.vue file change to user profileStore
+     - Open the SongstSection.vue file change to user userStore
+          * Add this const userStore = useUserStore()
+          * Add this route params and import
+    - Open the YoutubeSection.vue file change to user userStore
+          * Add this const userStore = useUserStore()
+          * Add this route params and import
+    - Open the PostsSection.vue file change to user userStore
+          * Add this const userStore = useUserStore()
+          * Add this route params and import
     
 
     
