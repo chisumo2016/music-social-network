@@ -11,7 +11,7 @@ import AddYoutubeVideo from "../views/account/AddYoutubeVideo.vue";
 import DeleteYoutubeVideo from "../views/account/DeleteYoutubeVideo.vue";
 import CreatePost from "../views/account/CreatePost.vue";
 import EditPost from "../views/account/EditPost.vue";
-import PostSection from "../views/account/PostSection.vue";
+import PostsSection from "../views/account/PostsSection.vue";
 import PostById from "../views/account/PostById.vue";
 
 const routes = [
@@ -76,8 +76,8 @@ const routes = [
       },
       {
         path: 'posts',
-        name: 'PostSection',
-        component: PostSection
+        name: 'PostsSection',
+        component: PostsSection
       },
       {
         path: 'post-by-id/:id',

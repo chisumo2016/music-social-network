@@ -296,6 +296,20 @@ password1234
              component: PostById
            },
     - Display the image using store ,THIS STILL THE PROBLEM
+
+## Vue 3 Pagination with Laravel API and Tailwind CSS 
+    - The objective of this lesson is to show the pagination on the Blog Post and spit all the posts from all users
+   
+    - Copy the all PostById page vue file paste into postSection.vue file
+    - add the id to reference 
+    - Spitt out all the post with from all the  users by linking to index() in API
+    - TESTED APPLICATION PASSED  . IMAGE PROBLEM
+    - Install the Pagination package.
+                npm i @hennge/vue3-pagination
+            * Import  that package into PostsSection.vue file
+              import VPagination from "@hennge/vue3-pagination";
+              import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+         
     
 
     
