@@ -24,7 +24,10 @@
 
         <div class="rounded-lg border">
           <a href="#">
-            <img class="rounded-t-lg" :src="postStore.postImage(post.image)" alt="" />
+            <img
+                class="rounded-t-lg w-full"
+                :src="postStore.postImage(post.image)"
+                alt="" />
           </a>
           <div class="p-2 md:p-4">
             <div class="text-lg">
@@ -49,6 +52,7 @@
                 <router-link
                     :to="'/account/edit-post/' + post.id"
                     class="
+                      mr-1
                       bg-blue-500
                       hover:bg-blue-700
                       text-white

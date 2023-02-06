@@ -13,6 +13,7 @@ import CreatePost from "../views/account/CreatePost.vue";
 import EditPost from "../views/account/EditPost.vue";
 import PostsSection from "../views/account/PostsSection.vue";
 import PostById from "../views/account/PostById.vue";
+import {useUserStore} from "@/Store/user-store";
 
 const routes = [
   {
@@ -22,16 +23,25 @@ const routes = [
   },
   {
     path: '/register',
+    beforeEnter:(to, from , next) =>{
+      useUserStore().id ? next('/account/profile/' + useUserStore().id) : next()
+    },
     name: 'register',
     component: RegisterView
   },
   {
     path: '/login',
+    beforeEnter:(to, from , next) =>{
+      useUserStore().id ? next('/account/profile/' + useUserStore().id) : next()
+    },
     name: 'login',
     component: LoginView
   },
   {
     path: '/account',
+    beforeEnter:(to, from , next) =>{
+      useUserStore().id ? next() : next('/login')
+    },
     component: AccountView,
     children:[
       {

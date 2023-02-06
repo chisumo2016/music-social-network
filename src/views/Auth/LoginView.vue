@@ -1,5 +1,6 @@
 <template>
   <div id="Register">
+    <TopNavigation/>
     <div class="w-full p-6 flex justify-center items-center items-center">
       <div class="w-full max-w-xs">
         <div class="bg-black p-8 shadow rounded mb-6 ">
@@ -59,7 +60,9 @@ import {useProfileStore} from "@/Store/profile-store"; //../
 import {useSongStore} from "@/Store/song-store"; //../
 import {usePostStore} from "@/Store/post-store"; //../
 import {useVideoStore} from "@/Store/video-store";
-import {useRouter} from "vue-router"; //../
+import {useRouter} from "vue-router";
+import TopNavigation from "@/components/structure/TopNavigation"; //../
+
 
 const userStore = useUserStore()
 const profileStore = useProfileStore()
@@ -82,7 +85,8 @@ const login = async  () => {
           email: email.value,
           password: password.value
       })
-      console.log(res)
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
+      //console.log(res)
 
     userStore.setUserDetails(res)
 

@@ -362,6 +362,28 @@ password1234
               usePostStore
               useVideoStore
     - Open the RegisterView.vue file
+            useProfileStore
+              useSongStore
+              usePostStore
+              useVideoStore
+
+## Register & Login with Pinia and Vue 3
+    - Obective of this lesson is to use Authentication guard, which is middleware
+    - Open the FullScreenModal vvue file
+         Make a logout funnctionality
+    - Add middlware in index.js
+          beforeEnter:(to, from , next) =>{
+         useUserStore().id ? next() : next('/login')
+       },
+    - Added the TopNavigation  one Login andd Registeer vue
+
+## Final video and clean up
+    
+
+
+
+
+
 
 
     

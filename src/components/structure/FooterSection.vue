@@ -13,13 +13,15 @@
             pt-8
             pb-4">
        <div class="mb-4">
-         <div class="mb-4">
+         <div class="mb-4 tp">
            Quick Links
          </div>
          <router-link to="/" class="block mb-2">Home</router-link>
+         <router-link to="/login" class="block mb-2">Login</router-link>
+         <router-link to="/register" class="block mb-2">Register</router-link>
        </div>
        <div class="mb-4">
-         <div class="mb-4">
+         <div class="mb-4 text-lg underline">
            About our Company
          </div>
          <p class="leading-normal">
@@ -40,10 +42,13 @@
             items-center
             text-sm
             py-6
+            pl-6
+            pr-4
          ">
-      &copy;2023 MSN Company . All rights reserved .
-      <div class="pt-4 md:p-0 text-center md:text-right text-sm">
-        <div class="no-underline hover:underline">Privacy Policy</div>
+        <div  class="mt-4">  &copy;2023 MSN Company . All rights reserved .</div>
+<!--      pt-4 md:p-0 text-center md:text-right text-sm-->
+      <div class="pt-4 md:p-0 text-right text-sm">
+        <div class="no-underline hover:underline ml-4">Privacy Policy</div>
         <div class="no-underline hover:underline ml-4">Terms & Conditions</div>
         <div class="no-underline hover:underline ml-4">Contact Us</div>
       </div>

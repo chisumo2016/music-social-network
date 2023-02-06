@@ -9,8 +9,14 @@
     <div class="mx-auto">
       <div class="my-4">
         <div class="flex  items-center py-2">
-          <img :src="userStore.userImage(post.user.image)" class="rounded-full" width="50">
-          <div class="ml-2 font-bold text-2xl">{{ post.user.first_name }}  {{ post.user.last_name }}</div>
+          <router-link :to="'/account/profile/' + post.user.id">
+            <img :src="userStore.userImage(post.user.image)" class="rounded-full" width="50">
+          </router-link>
+          <div class="ml-2 font-bold text-2xl">
+            <router-link :to="'/account/profile/' + post.user.id">
+              {{ post.user.first_name }}  {{ post.user.last_name }}
+            </router-link>
+          </div>
         </div>
           <img :src="postStore.postImage(post.image)" alt="" class="w-full">
         <div class="p-4">

@@ -34,23 +34,49 @@
       <div class="bg-black absolute w-full h-full opacity-75"></div>
       <div class="my-auto fixed border-white w-80 pt-16">
         <p class="text-2xl text-center text-white font-bold">Menu</p>
+
         <RouterLinkButton
+            v-if="!userStore.id"
             @click="open = !open"
-            class="w-full text-gray-100 text-center text-lg"
+            class="w-full text-gray-100 text-center text-lg mt-2"
+            btnText="Profile"
+            color="green"
+            url="login"
+        />
+        <RouterLinkButton
+          v-if="!userStore.id"
+          @click="open = !open"
+          class="w-full text-gray-100 text-center text-lg mt-2"
+          btnText="Profile"
+          color="green"
+          url="register"
+      />
+        <RouterLinkButton
+            v-if="userStore.id"
+            @click="open = !open"
+            class="w-full text-gray-100 text-center text-lg mt-2"
             btnText="Profile"
             color="green"
             :url="'/account/profile/' + userStore.id"
         />
         <RouterLinkButton
+            v-if="userStore.id"
             @click="open = !open"
-            class="w-full text-gray-100 text-center text-lg"
+            class="w-full text-gray-100 text-center text-lg mt-2"
             btnText="Posts"
             color="green"
             url="/account/posts"
         />
         <RouterLinkButton
+            v-if="userStore.id"
+            @click="logout"
+            class="w-full text-gray-100 text-center text-lg mt-2"
+            btnText="Logout"
+            color="green"
+        />
+        <RouterLinkButton
             @click="open = !open"
-            class="w-full text-gray-100 text-center text-lg"
+            class="w-full text-gray-100 text-center text-lg mt-2"
             btnText="Close"
             color="red"
         />
@@ -63,10 +89,40 @@
 import {ref} from "vue";
 import RouterLinkButton from "@/components/global/RouterLinkButton";
 import {useUserStore} from "@/Store/user-store";
+import axios from "axios";
+import {useProfileStore} from "@/Store/profile-store";
+import {useSongStore} from "@/Store/song-store";
+import {usePostStore} from "@/Store/post-store";
+import {useVideoStore} from "@/Store/video-store";
+import {useRouter} from "vue-router";
 
 let open = ref(false)
 
 const userStore = useUserStore()
+const profileStore = useProfileStore()
+const songStore = useSongStore()
+const postStore = usePostStore()
+const videoStore = useVideoStore()
+const router = useRouter();
+
+const logout = ()=>{
+  try {
+    let res = axios.post('http://music-social-network-api.test/api/logout',{
+      user_id: userStore.id
+    })
+
+    console.log(res.data)
+    userStore.clearUser()
+    profileStore.clearProfile()
+    songStore.clearSongs()
+    postStore.clearPosts()
+    videoStore.clearVideos()
+
+      router.push('/')
+  }catch (e) {
+    console.log(e)
+  }
+}
 </script>
 
 <style scoped>
