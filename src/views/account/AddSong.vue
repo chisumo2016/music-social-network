@@ -56,15 +56,14 @@ import axios from "axios";
 import {useSongStore} from "@/Store/song-store";
 import { useRouter} from "vue-router";
 
-let title    = ref(null);
-let song    = ref(null);
-let file    = ref(null);
-let errors  = ref([]);
-
 const userStore = useUserStore()
 const songStore = useSongStore()
 const router  = useRouter()
 
+let title    = ref(null);
+let song    = ref(null);
+let file    = ref(null);
+let errors  = ref([]);
 
 const handleFileUpload = () =>{
   song.value = file.value.files[0]
@@ -86,8 +85,8 @@ const addSong = async () =>{
       form.append('title',   title.value || '')
       form.append('file',   song.value)
 
-
       await axios.post('http://music-social-network-api.test/api/songs',form)
+      //await axios.post('api/songs', form)
 
     songStore.fetchSongsByUserId(userStore.id)
 
@@ -98,7 +97,6 @@ const addSong = async () =>{
     errors.value = err.response.data.errors
   }
 }
-
 </script>
 
 <style scoped>

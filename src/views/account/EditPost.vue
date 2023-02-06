@@ -83,18 +83,18 @@ import {useRoute, useRouter} from "vue-router";
 import Swal from "@/sweetalert2";
 import {useUserStore} from "@/Store/user-store";
 
-const route = useRoute()
-const router = useRouter()
+const route     = useRoute()
+const router    = useRouter()
 const postStore = usePostStore()
 const userStore = useUserStore()
 
-let title = ref(null);
-let location = ref(null);
-let description = ref(null);
-const showModal = ref(false)
-let imageData = null
-let   image = ref(null)
-let   errors = ref([])
+let   title       = ref(null);
+let   location    = ref(null);
+let   description = ref(null);
+const showModal   = ref(false)
+let   imageData   = null
+let   image       = ref(null)
+let   errors     = ref([])
 
 onMounted(async () =>{
   await getPostById()
@@ -106,15 +106,16 @@ const setCroppedImageData = (data) =>{
 
 const getPostById = async  () =>{
       try {
-            let res = await axios.get('http://music-social-network-api.test/api/posts/' + route.params.id)
+            //let res = await axios.get('http://music-social-network-api.test/api/posts/' + route.params.id)
+            let res = await axios.get('api/posts/' + route.params.id)
             console.log(res)
 
             title.value         = res.data.title
             location.value      = res.data.location
             image.value         =  postStore.postImage(res.data.image)
             description.value   = res.data.description
-      }catch (err) {
 
+      }catch (err) {
            errors.value = err.response.data.errors
       }
 
@@ -126,23 +127,23 @@ const updatePost = async () =>{
   /**Form Data Object*/
   let data = new FormData() ;
 
-
   data.append('title' ,   title.value || '')
   data.append('location' ,    location.value || '')
   data.append('description' , description.value || '')
 
   if (imageData) {
-    data.append('id', userStore.id || '')
+    data.append('id',    userStore.id || '')
     data.append('image', imageData.file || '')
-    data.append('height', imageData.height || '')
+    data.append('height',imageData.height || '')
     data.append('width', imageData.width || '')
-    data.append('left', imageData.left || '')
-    data.append('top', imageData.top || '')
+    data.append('left',  imageData.left || '')
+    data.append('top',    imageData.top || '')
   }
 
   //console.log(data)
   try {
     await axios.post('http://music-social-network-api.test/api/posts/' + route.params.id + '?_method=PUT', data)
+    //await axios.post('api/posts/' + route.params.id + '?_method=PUT', data)
 
     await postStore.fetchPostsByUserId(userStore.id)
 

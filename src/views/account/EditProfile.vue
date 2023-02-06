@@ -89,25 +89,21 @@ import TextArea from "@/components/global/TextArea";
 import SubmitFormButton from "@/components/global/SubmitFormButton";
 import CropperModal from "@/components/global/CropperModal";
 import CroppedImage from "@/components/global/CroppedImage";
-//import { useProfileStore } from "@/Store/profile/profile-store";
 import { useUserStore } from "@/Store/user-store";
 import axios from "axios";
 import {useRouter} from "vue-router";
-//import router from "@/router";
-
-const firstName = ref(null);
-const lastName = ref(null);
-const location = ref(null);
-const description = ref(null);
-const showModal = ref(false)
-let imageData = null
-let   image = ref(null)
-const  errors = ref([])
 
 const router = useRouter()
-//const profileStore = useProfileStore()
 const userStore = useUserStore()
 
+const firstName   = ref(null);
+const lastName    = ref(null);
+const location    = ref(null);
+const description = ref(null);
+const showModal   = ref(false)
+let imageData     = null
+let   image       = ref(null)
+const  errors     = ref([])
 
 onMounted(() => {
     firstName.value  = userStore.firstName    || null
@@ -118,7 +114,7 @@ onMounted(() => {
 })
 
 const setCroppedImageData = (data) =>{
-  imageData = data
+  imageData   = data
   image.value = data.imageUrl
 }
 
@@ -144,6 +140,7 @@ const updateUser = async () =>{
   //console.log(data)
   try {
       await axios.post('http://music-social-network-api.test/api/users/' + userStore.id  + '?_method=PUT', data)
+      //await axios.post('api/users/' + userStore.id  + '?_method=PUT', data)
 
       await userStore.fetchUser()
 

@@ -11,7 +11,8 @@ export const useSongStore = defineStore('song', {
     actions: {
         async fetchSongsByUserId(userId){
           let res = await axios.get('http://music-social-network-api.test/api/user/' + userId + '/songs')
-            //let res = await axios.get('api/users/' + this.$state.id)
+            //let res = await axios.get('api/users/' + userId + '/songs')
+
             this.$state.artistId    = res.data.artist_id
             this.$state.artistName  = res.data.artist_name
             if (res.data.songs){

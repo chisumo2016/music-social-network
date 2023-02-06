@@ -39,7 +39,6 @@
 </div>
 </template>
 <script setup>
-
 import ProfileInfoSection from "@/components/partials/profile/ProfileInfoSection.vue";//../..
 import ProfileAboutSection from "@/components/partials/profile/ProfileAboutSection";
 import RouterLinkButton from "@/components/global/RouterLinkButton";
@@ -51,10 +50,9 @@ import {useProfileStore} from "@/Store/profile-store";
 import {onMounted} from "vue";
 import {useRoute} from "vue-router";
 
-const userStore   = useUserStore()
-const profileStore = useProfileStore()
-
-const route = useRoute()
+const route         = useRoute()
+const userStore     = useUserStore()
+const profileStore  = useProfileStore()
 
 onMounted(async () =>{
   await profileStore.fetchProfileById(route.params.id)

@@ -91,9 +91,8 @@ let title       = ref(null);
 let location    = ref(null);
 let description = ref(null);
 let imageData   = null
-let image     = ref(null)
+let image       = ref(null)
 let  errors     = ref([])
-
 
 const setCroppedImageData = (data) =>{
   imageData = data
@@ -114,10 +113,10 @@ const createPost = async () =>{
   /**Form Data Object*/
   let data = new FormData() ;
 
-  data.append('user_id' , userStore.id || '')
-  data.append('title' ,   title.value || '')
-  data.append('location' ,    location.value || '')
-  data.append('description' , description.value || '')
+  data.append('user_id' ,  userStore.id || '')
+  data.append('title' ,    title.value || '')
+  data.append('location' ,  location.value || '')
+  data.append('description',description.value || '')
 
   if (imageData) {
     data.append('image', imageData.file || '')
@@ -126,10 +125,11 @@ const createPost = async () =>{
     data.append('left', imageData.left || '')
     data.append('top', imageData.top || '')
   }
-
   //console.log(data)
   try {
     await axios.post('http://music-social-network-api.test/api/posts/', data)
+    console.log(data)
+    //await axios.post('api/posts/', data)
 
     await postStore.fetchPostsByUserId(userStore.id)
 
@@ -140,8 +140,8 @@ const createPost = async () =>{
     )
 
     await postStore.fetchPostsByUserId(userStore.id)
-    router.push('/account/profile/' + userStore.id)
 
+    router.push('/account/profile/' + userStore.id)
   }catch (e) {
     errors.value = e.response.data.errors;
   }

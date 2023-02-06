@@ -41,15 +41,12 @@
 </template>
 
 <script setup>
-
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {usePostStore} from "@/Store/post-store";
 import {useUserStore} from "@/Store/user-store";
 import VPagination from "@hennge/vue3-pagination";
 import "@hennge/vue3-pagination/dist/vue3-pagination.css";
-
-
 
 const postStore = usePostStore()
 const userStore = useUserStore()
@@ -61,9 +58,11 @@ let posts       = ref(null)
 onMounted(async  () =>{
   await getPosts()
 })
+
 const getPosts = async () =>{
   try {
     let res = await axios.get('http://music-social-network-api.test/api/posts?page=' + page.value)
+    //let res = await axios.get('api/posts?page=' + page.value)
     pageCount.value = res.data.page_count
     posts.value     = res.data.paginate.data
   }catch (e) {

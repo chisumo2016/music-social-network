@@ -42,9 +42,10 @@ import {onMounted} from "vue";
 import {useUserStore} from "@/Store/user-store";
 import {useRoute} from "vue-router";
 
+const route      = useRoute()
 const userStore  = useUserStore()
 const videoStore = useVideoStore()
-const route      = useRoute()
+
 
 onMounted(async () =>{
   await videoStore.fetchVideosByUserId(route.params.id)

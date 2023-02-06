@@ -10,7 +10,9 @@
       <div class="my-4">
         <div class="flex  items-center py-2">
           <router-link :to="'/account/profile/' + post.user.id">
-            <img :src="userStore.userImage(post.user.image)" class="rounded-full" width="50">
+            <img
+                :src="userStore.userImage(post.user.image)"
+                class="rounded-full" width="50" />
           </router-link>
           <div class="ml-2 font-bold text-2xl">
             <router-link :to="'/account/profile/' + post.user.id">
@@ -18,7 +20,9 @@
             </router-link>
           </div>
         </div>
-          <img :src="postStore.postImage(post.image)" alt="" class="w-full">
+          <img
+              :src="postStore.postImage(post.image)"
+              alt="" class="w-full">
         <div class="p-4">
           <p class="text-3xl font-bold hover:text-gray-700 pb-4">{{ post.title}}</p>
           <p class="p-2 text-lg">Event Location : {{ post.location}} </p>
@@ -33,7 +37,6 @@
 </template>
 
 <script setup>
-
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {useRoute} from "vue-router";
@@ -43,14 +46,17 @@ import {useUserStore} from "@/Store/user-store";
 const route = useRoute()
 const postStore = usePostStore()
 const userStore = useUserStore()
+
 let post = ref(null)
 
 onMounted(async  () =>{
   await getPostById()
 })
+
 const getPostById = async () =>{
   try {
-    let res = await axios.get('http://music-social-network-api.test/api/posts/' + route.params.id)
+    //let res = await axios.get('http://music-social-network-api.test/api/posts/' + route.params.id)
+    let res = await axios.get('api/posts/' + route.params.id)
     post.value = res.data
   }catch (e) {
     console.log(e)

@@ -30,9 +30,9 @@
 </template>
 
 <script setup>
-import {useSongStore} from "@/Store/song-store";
 import axios from "axios";
 import {useUserStore} from "@/Store/user-store"; //../../store
+import {useSongStore} from "@/Store/song-store";
 import  Swal from '../../sweetalert2'
 
 const songStore = useSongStore()
@@ -51,6 +51,7 @@ const deleteSong = async  (song) =>{
       if (result.isConfirmed){
         try {
           await axios.delete('http://music-social-network-api.test/api/songs/' + song.id + '/' + userStore.id )
+          //await axios.delete('api/songs/' + song.id + '/' + userStore.id )
 
           songStore.fetchSongsByUserId(userStore.id )
 

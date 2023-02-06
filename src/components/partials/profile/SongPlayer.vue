@@ -1,8 +1,6 @@
 <template>
   <div class="bg-green-500 rounded">
-    <div id="aplayer">
-    </div>
-
+    <div id="aplayer"> </div>
   </div>
 </template>
 
@@ -51,6 +49,7 @@ const mapSongs = () =>{
     return {
           name: song.title,
           artist: songStore.artistName,
+          //url: process.env.VUE_APP_API_URL + 'songs/' + songStore.artistId + '/' + song.song
           url: "http://music-social-network-api.test/" + 'songs/' + songStore.artistId + "/" + song.song
     }
   })

@@ -34,9 +34,9 @@
 
 <script setup>
 import axios from "axios";
-import {useUserStore} from "@/Store/user-store"; //../../store
 import  Swal from '../../sweetalert2'
 import {useVideoStore} from "@/Store/video-store";
+import {useUserStore} from "@/Store/user-store"; //../../store
 
 const videoStore = useVideoStore()
 const userStore = useUserStore()
@@ -54,6 +54,7 @@ const deleteVideo = async  (video) =>{
      if (result.isConfirmed){
       try {
         await axios.delete('http://music-social-network-api.test/api/youtube/' + video.id)
+        //await axios.delete('api/youtube/' + video.id)
 
         videoStore.fetchVideosByUserId(userStore.id )
 

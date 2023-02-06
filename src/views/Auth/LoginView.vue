@@ -27,17 +27,17 @@
           </div>
           <button
               class="
-            block
-            w-full
-            bg-green-500
-            text-white
-             rounded-sm
-             py-3
-             text-sm
-             tracking-wide"
+                  block
+                  w-full
+                  bg-red-500
+                  text-white
+                  rounded-sm
+                  py-3
+                  text-sm
+                  tracking-wide"
               @click="login"
               type="submit">
-            Login
+               Login
           </button>
         </div>
         <p class="text-center text-md text-gray-900">
@@ -64,16 +64,17 @@ import {useRouter} from "vue-router";
 import TopNavigation from "@/components/structure/TopNavigation"; //../
 
 
-const userStore = useUserStore()
+const router       = useRouter()
+const userStore    = useUserStore()
 const profileStore = useProfileStore()
-const songStore = useSongStore()
-const postStore = usePostStore()
-const videoStore = useVideoStore()
-const router = useRouter()
+const songStore     = useSongStore()
+const postStore     = usePostStore()
+const videoStore    = useVideoStore()
 
-const email   = ref(null)
-const password = ref(null)
-const errors = ref([])
+
+const email     = ref(null)
+const password  = ref(null)
+const errors    = ref([])
 
 
 const login = async  () => {
@@ -87,7 +88,6 @@ const login = async  () => {
       })
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
       //console.log(res)
-
     userStore.setUserDetails(res)
 
     await profileStore.fetchProfileById(userStore.id)
@@ -96,15 +96,14 @@ const login = async  () => {
     await videoStore.fetchVideosByUserId(userStore.id)
 
     /**Redirect */
-    router.push('account/profile/' + userStore.id)
+    router.push('/account/profile/' + userStore.id)
 
   }catch (e) {
+    console.log(e.response)
     errors.value = e.response.data.errors
   }
 }
-
 </script>
-
 <style scoped>
 
 </style>

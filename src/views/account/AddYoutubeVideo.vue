@@ -19,13 +19,11 @@
         inputType="text"
         :error="errors.url ? errors.url[0] : ''"
     />
-
     <SubmitFormButton
         @submit="addYoutubeVideoLink"
         btnText="Add Video"
     />
   </div>
-
 </template>
 
 <script setup>
@@ -37,32 +35,31 @@ import {useUserStore} from "@/Store/user-store";
 import Swal from "../../sweetalert2"
 import { useRouter} from "vue-router";
 
-const router = useRouter()
+const router    = useRouter()
 const userStore = useUserStore()
 
-
-const  title = ref(null)
-const  videoCode = ref(null)
-const  errors = ref([])
-
+const  title      = ref(null)
+const  videoCode  = ref(null)
+const  errors     = ref([])
 
 const addYoutubeVideoLink = async () => {
   errors.value = []
 
   try {
       await axios.post('http://music-social-network-api.test/api/youtube',{
+      //await axios.post('api/youtube',{
         /**Object*/
-        user_id: userStore.id,
-        title: title.value,
-        url: videoCode.value,
+        user_id : userStore.id,
+        title   : title.value,
+        url     : videoCode.value,
       })
       Swal.fire(
           'New Video Added!',
           'You added a video with name "' + title.value + '"',
           'success'
       )
-     router.push('/account/profile/' + userStore.id)
 
+     router.push('/account/profile/' + userStore.id)
   }catch (err) {
     errors.value = err.response.data.errors
     console.log('err addYoutubeVideoLink ', err)

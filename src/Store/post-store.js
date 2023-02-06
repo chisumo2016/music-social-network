@@ -8,8 +8,9 @@ export const usePostStore = defineStore('post', {
 
     actions: {
         async fetchPostsByUserId(userId){
-            let res = await axios.get(`http://music-social-network-api.test/api/user/`+ userId + '/posts')
-            this.$state.posts    = res.data
+             let res = await axios.get(`http://music-social-network-api.test/api/user/`+ userId + '/posts')
+            //let res = await axios.get('api/user/'+ userId + '/posts')
+             this.$state.posts    = res.data
         },
 
         postImage(image){

@@ -33,13 +33,12 @@ import RouterLinkButton from "@/components/global/RouterLinkButton";
 import SongPlayer from "@/components/partials/profile/SongPlayer";
 import {useUserStore} from "@/Store/user-store";
 import {useRoute} from "vue-router";
-
 import {onMounted} from "vue";
 import {useSongStore} from "@/Store/song-store"; //../../../s
 
+const route     = useRoute()
 const userStore = useUserStore()
 const songStore = useSongStore()
-const route =useRoute()
 
 onMounted(async () =>{
   await songStore.fetchVideosByUserId(route.params.id)

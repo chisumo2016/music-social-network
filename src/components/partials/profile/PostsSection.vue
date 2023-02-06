@@ -119,6 +119,7 @@ const deletePost = async  (title, id) =>{
     if (result.isConfirmed){
       try {
         await axios.delete('http://music-social-network-api.test/api/posts/' + id)
+        //await axios.delete('api/posts/' + id)
 
         postStore.fetchPostsByUserId(route.params.id ) //userStore.id
 

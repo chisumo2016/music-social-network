@@ -85,8 +85,6 @@
 import TextInput from "@/components/global/TextInput.vue";
 import {ref} from "vue";
 import axios from "axios";
-
-
 import {useProfileStore} from "@/Store/profile-store";
 import { useSongStore} from "@/Store/song-store";
 import {usePostStore} from "@/Store/post-store";
@@ -96,12 +94,12 @@ import {useRouter} from "vue-router/dist/vue-router";
 import TopNavigation from "@/components/structure/TopNavigation";
 
 
-const userStore = useUserStore()
-const profileStore = useProfileStore()
-const songStore = useSongStore()
-const postStore = usePostStore()
-const videoStore = useVideoStore()
-const router = useRouter()
+const userStore     = useUserStore()
+const profileStore  = useProfileStore()
+const songStore     = useSongStore()
+const postStore     = usePostStore()
+const videoStore    = useVideoStore()
+const router        = useRouter()
 
 const firstName = ref(null)
 const lastName  = ref(null)
@@ -123,17 +121,18 @@ const register = async () => {
         password    :   password.value,
         password_confirmation : confirmPassword.value,
       })
+
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token
       //console.log(res)
-
       userStore.setUserDetails(res)
+
       await profileStore.fetchProfileById(userStore.id)
       await songStore.fetchSongsByUserId(userStore.id)
       await postStore.fetchPostsByUserId(userStore.id)
       await videoStore.fetchVideosByUserId(userStore.id)
 
       /**Redirect */
-      router.push('account/profile/' + userStore.id)
+      router.push('/account/profile/' + userStore.id)
 
     }catch (e) {
       errors.value = e.response.data.errors
