@@ -16,7 +16,7 @@ const songStore = useSongStore()
 let songsList = []
 
 onMounted(() => {
-  mapSongs()
+  setTimeout(() =>{mapSongs()},500)
   //thePlayer()
 })
 const thePlayer = () =>{

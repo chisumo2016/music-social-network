@@ -39,7 +39,7 @@
             class="w-full text-gray-100 text-center text-lg"
             btnText="Profile"
             color="green"
-            url="/account/profile"
+            :url="'/account/profile/' + userStore.id"
         />
         <RouterLinkButton
             @click="open = !open"
@@ -62,8 +62,11 @@
 <script setup>
 import {ref} from "vue";
 import RouterLinkButton from "@/components/global/RouterLinkButton";
+import {useUserStore} from "@/Store/user-store";
 
 let open = ref(false)
+
+const userStore = useUserStore()
 </script>
 
 <style scoped>

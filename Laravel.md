@@ -361,6 +361,8 @@ password1234
               useSongStore
               usePostStore
               useVideoStore
+    - Open the RegisterView.vue file
+
 
     
 

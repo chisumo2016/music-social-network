@@ -152,7 +152,8 @@ const updatePost = async () =>{
         'success'
     )
 
-    router.push('/account/profile/')
+    await postStore.fetchPostsByUserId(userStore.id)
+    router.push('/account/profile/' + userStore.id)
 
   }catch (e) {
     errors.value = e.response.data.errors;

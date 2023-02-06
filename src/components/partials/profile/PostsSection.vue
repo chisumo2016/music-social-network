@@ -92,13 +92,16 @@ import {usePostStore} from "@/Store/post-store";
 import Swal from "@/sweetalert2";
 import axios from "axios";
 import {useUserStore} from "@/Store/user-store";
-import {useRoute} from "vue-router"; //../../
+import {useRoute} from "vue-router";
+import {onMounted} from "vue"; //../../
 
 const postStore = usePostStore()
 const userStore = useUserStore()
 const route     = useRoute()
 
-
+onMounted(async () =>{
+  await postStore.fetchPostsByUserId(route.params.id)
+})
 const deletePost = async  (title, id) =>{
   Swal.fire({
     title: 'Are you sure you want to delete this "' + title + '"',
@@ -113,7 +116,7 @@ const deletePost = async  (title, id) =>{
       try {
         await axios.delete('http://music-social-network-api.test/api/posts/' + id)
 
-        postStore.fetchPostsByUserId(userStore.id )
+        postStore.fetchPostsByUserId(route.params.id ) //userStore.id
 
         Swal.fire(
             'Deleted!',

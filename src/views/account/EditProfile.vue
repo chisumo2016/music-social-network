@@ -147,7 +147,7 @@ const updateUser = async () =>{
 
       await userStore.fetchUser()
 
-       router.push('/account/profile/')
+       router.push('/account/profile/' + userStore.id)
 
   }catch (e) {
     errors.value = e.response.data.errors;
