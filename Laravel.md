@@ -351,7 +351,16 @@ password1234
     - Open the PostsSection.vue file change to user userStore
           * Add this const userStore = useUserStore()
           * Add this route params and import
-    
+
+## Register & Login with Pinia and Vue 3
+    - Obective of this lesson is to use mult Authication sys with vue , we made some modification
+      from single to multiple user .userStore to profileStore
+    - Open the LoginView.vue file
+         * Bring in all our stores
+              useProfileStore
+              useSongStore
+              usePostStore
+              useVideoStore
 
     
 

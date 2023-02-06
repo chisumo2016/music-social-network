@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', {
     }),
 
     actions: {
-        async setUserDetails(res){
+        setUserDetails(res){
             console.log('setUserDetails',res.data)
             this.$state.id          = res.data.user.id
             this.$state.token       = res.data.token

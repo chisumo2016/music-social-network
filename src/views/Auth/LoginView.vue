@@ -55,11 +55,23 @@ import TextInput from "@/components/global/TextInput.vue";//../
 import {ref} from "vue";
 import axios from  "axios"
 import {useUserStore} from "@/Store/user-store"; //../
+import {useProfileStore} from "@/Store/profile-store"; //../
+import {useSongStore} from "@/Store/song-store"; //../
+import {usePostStore} from "@/Store/post-store"; //../
+import {useVideoStore} from "@/Store/video-store";
+import {useRouter} from "vue-router"; //../
+
 
 const email   = ref(null)
 const password = ref(null)
 const errors = ref([])
+
 const userStore = useUserStore()
+const profileStore = useProfileStore()
+const songStore = useSongStore()
+const postStore = usePostStore()
+const videoStore = useVideoStore()
+const router = useRouter()
 
 const login = async  () => {
     errors.value = []
@@ -73,6 +85,12 @@ const login = async  () => {
       console.log(res)
 
     userStore.setUserDetails(res)
+    await profileStore.fetchProfileById(userStore.id)
+    await songStore.fetchSongsByUserId(userStore.id)
+    await postStore.fetchPostsByUserId(userStore.id)
+    await videoStore.fetchVideosByUserId(userStore.id)
+
+    router.push('account/profile/' + userStore.id)
 
   }catch (e) {
     errors.value = e.response.data.errors
