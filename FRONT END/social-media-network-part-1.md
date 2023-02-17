@@ -1,4 +1,5 @@
 ### Vue CLI setup with Vue 3 and Tailwind CSS | CDN | Laravel 9 | Laravel API | Pt 3
+    (JW)
     - Social Music Nework 
     - Install via CLI 
         vue create music-social-network  
